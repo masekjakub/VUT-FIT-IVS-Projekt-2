@@ -1,0 +1,46 @@
+název týmu:
+ EXPECT_EQ(oznuk, false)
+
+členové:
+ Vojtěch Kuchař	xkucha30
+ Jakub Mašek	xmasek19
+ Filip Polomski	xpolom00
+ Martin Zelenák	xzelen27
+
+Systém pro správu verzí:
+ git
+
+Hosting:
+ github
+
+Nahlédnutí do repozitáře je možné z mailu ivs.kontrola@gmail.com.
+
+Předběžné rozdělení práce:
+ Vojtěch Kuchař	- část funkcí matematické knihovny, tvorba uživatelské příručky
+ Jakub Mašek	- část funkcí matematické knihovny, implementace gui (PythonQT), propojení gui s mat. knihovnou
+ Filip Polomski	- část funkcí matematické knihovny, dokumentace, tvorba instalátoru a odinstalátoru
+ Martin Zelenák	- část funkcí matematické knihovny, testování, profiling
+
+Operační systém:
+ Windows
+
+Komunikační prostředky:
+ telefon
+ discord
+ facebook messenger
+ email
+ osobní schůzky
+ doodle
+
+Pravidla pro komunikaci:
+ Telefon se používá pouze v časově naléhavých situacích.
+ Pravidelné osobní schůze se budou pořádat minimálně jednou týdně.
+ Nově příchozí emaily a zprávy na platformách discord a facebook messenger si musí člen týmu zobrazit nejméně jednou během dvou dní.
+
+Termíny:
+(Data dokončení jednotlivých částí projektu.)
+28.3. návrh a implementace testů matematické knihovny
+30.3. návrh gui a matematické knihovny
+11.4. implementace gui, implementace matematické knihovny, vygenerování doxygen dokumentace
+22.4. implementace profilingu, zhotovení instalátoru a odinstalátoru, dokončení dokumentace, tvorba uživatelské příručky
+25.4. dokončení finálního produktu, vyhodnocení projektu a naplnění plánu
