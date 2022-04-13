@@ -1,0 +1,46 @@
+Team name:
+ EXPECT_EQ(oznuk, false)
+
+Members:
+ Vojtěch Kuchař	xkucha30
+ Jakub Mašek	xmasek19
+ Filip Polomski	xpolom00
+ Martin Zelenák	xzelen27
+
+Version control system:
+ git
+
+Hosting:
+ github
+
+Repository visible from:
+ ivs.kontrola@gmail.com
+
+The split of work:
+ Vojtěch Kuchař	- mathematical library, user manual
+ Jakub Mašek	- gui implementation (PythonQT), gui and mathematical library merge
+ Filip Polomski	- mathematical library, documentation, installer and uninstaller
+ Martin Zelenák	- mathematical library, testing, profiling
+
+OS:
+ Windows
+
+Communication:
+ mobile phones
+ discord
+ facebook messenger
+ email
+ personal meeting
+ doodle
+
+Communication rules:
+ Usage of mobile phone is allowed only in urgent situations.
+ Personal meeting is happening at least once a week.
+ Every team member has to check emails, discord and facebook messenger notifications at least every two days.
+
+Milestones:
+28.3. draft and implementation of tests for mathematical library
+30.3. draft of gui and mathematical library
+11.4. implementation of gui and mathematical library, generation of doxygen documentation
+22.4. implementation of profiling, installer and uninstaller, completion documentation, user manual
+25.4. completion of project, project and plan rating
