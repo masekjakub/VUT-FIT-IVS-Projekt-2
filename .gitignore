@@ -1,0 +1,5 @@
+#Pytest folders
+.pytest_cache/
+src/__pycache__/
+#VS code
+.vscode/
