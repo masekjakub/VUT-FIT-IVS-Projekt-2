@@ -1,17 +1,16 @@
-Prostredi
+System
 ---------
 
-Ubuntu 64bit
 Windows 64bit
 
-Autori
+Authors
 ------
 
-Nazev tymu
-- xlogin01 jmeno prijmeni 
-- xlogin02 jmeno prijmeni 
-- xlogin03 jmeno prijmeni 
-- xlogin04 jmeno prijmeni 
+Team name: EXPECT_EQ(oznuk, false)
+- xkucha30 Vojtěch Kuchař
+- xmasek19 Jakub Mašek 
+- xpolom00 Filip Polomski 
+- xzelen27 Martin Zelenák 
 
 Licence
 -------
