@@ -938,6 +938,8 @@ class Ui_calculator(object):
                     expArr.insert(0,"0")
                 elif (i == "-" or i == "+") and re.fullmatch(r'(×|/|^)',expArr[index-1]):
                     expArr[index] = str(expArr[index]) + str(expArr.pop(index+1))
+                #elif (i == "-" or i == "+") and re.fullmatch(r'(×|/|^)',expArr[index-1]):
+                #    expArr[index] = str(expArr[index]) + str(expArr.pop(index+1))
             print(expArr)######################################################################################debug
             return expArr
 
