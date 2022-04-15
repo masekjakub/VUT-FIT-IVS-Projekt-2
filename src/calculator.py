@@ -919,7 +919,8 @@ class Ui_calculator(object):
         self.lineInput.setFocus()
 
     def ansToInput(self):
-        self.lineInput.setText(str(self.res))
+        curText = self.lineInput.text()
+        self.lineInput.setText(curText + str(self.res))
         self.lineInput.setFocus()
 
     def delHistory(self):
@@ -934,12 +935,15 @@ class Ui_calculator(object):
                     expArr.remove('')
 
             for index,i in enumerate(expArr):
-                if (i == "-" or i == "+") and index == 0:
+                if re.fullmatch(r'(\+|-|×|/)',expArr[index]) and index == 0:
                     expArr.insert(0,"0")
                 elif (i == "-" or i == "+") and re.fullmatch(r'(×|/|^)',expArr[index-1]):
                     expArr[index] = str(expArr[index]) + str(expArr.pop(index+1))
-                elif (i == "sqrt" or i == "^") and (index == 0 or not expArr[index-1].isdigit()):
+                elif (i == "sqrt" or i == "^") and (index == 0 or re.fullmatch(r'(×|/|\+|-)',expArr[index-1])):
                     expArr.insert(index,"2")
+                elif (i == "!") and (index == 0 or re.fullmatch(r'(×|/|\+|-)',expArr[index-1])):
+                    expArr.pop(index)
+                    
             print(expArr)######################################################################################debug
             return expArr
 
