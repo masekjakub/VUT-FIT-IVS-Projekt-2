@@ -819,26 +819,26 @@ class Ui_calculator(object):
         calculator.setCentralWidget(self.centralwidget)
 
         #attachment of buttons and keys to functions
-        self.Num0.clicked.connect(lambda: (self.addSymbolsToInput(0)))
-        self.Num1.clicked.connect(lambda: (self.addSymbolsToInput(1)))
-        self.Num2.clicked.connect(lambda: (self.addSymbolsToInput(2)))
-        self.Num3.clicked.connect(lambda: (self.addSymbolsToInput(3)))
-        self.Num4.clicked.connect(lambda: (self.addSymbolsToInput(4)))
-        self.Num5.clicked.connect(lambda: (self.addSymbolsToInput(5)))
-        self.Num6.clicked.connect(lambda: (self.addSymbolsToInput(6)))
-        self.Num7.clicked.connect(lambda: (self.addSymbolsToInput(7)))
-        self.Num8.clicked.connect(lambda: (self.addSymbolsToInput(8)))
-        self.Num9.clicked.connect(lambda: (self.addSymbolsToInput(9)))
-        self.PlusBtn.clicked.connect(lambda: (self.addSymbolsToInput("+")))
-        self.DivBtn.clicked.connect(lambda: (self.addSymbolsToInput("/")))
-        self.MultiplyBtn.clicked.connect(lambda: (self.addSymbolsToInput("×")))
-        self.MinusBtn.clicked.connect(lambda: (self.addSymbolsToInput("-")))
-        self.CommaBtn.clicked.connect(lambda: (self.addSymbolsToInput(".")))
-        self.FacBtn.clicked.connect(lambda: (self.addSymbolsToInput("!")))
-        self.PowBtn.clicked.connect(lambda: (self.addSymbolsToInput("^")))
-        self.SqrBtn.clicked.connect(lambda: (self.addSymbolsToInput("sqrt")))
-        self.SinBtn.clicked.connect(lambda: (self.addSymbolsToInput("sin")))
-        self.CosBtn.clicked.connect(lambda: (self.addSymbolsToInput("cos")))
+        self.Num0.clicked.connect(lambda: (self.addSymbolToInput(0)))
+        self.Num1.clicked.connect(lambda: (self.addSymbolToInput(1)))
+        self.Num2.clicked.connect(lambda: (self.addSymbolToInput(2)))
+        self.Num3.clicked.connect(lambda: (self.addSymbolToInput(3)))
+        self.Num4.clicked.connect(lambda: (self.addSymbolToInput(4)))
+        self.Num5.clicked.connect(lambda: (self.addSymbolToInput(5)))
+        self.Num6.clicked.connect(lambda: (self.addSymbolToInput(6)))
+        self.Num7.clicked.connect(lambda: (self.addSymbolToInput(7)))
+        self.Num8.clicked.connect(lambda: (self.addSymbolToInput(8)))
+        self.Num9.clicked.connect(lambda: (self.addSymbolToInput(9)))
+        self.PlusBtn.clicked.connect(lambda: (self.addSymbolToInput("+")))
+        self.DivBtn.clicked.connect(lambda: (self.addSymbolToInput("/")))
+        self.MultiplyBtn.clicked.connect(lambda: (self.addSymbolToInput("×")))
+        self.MinusBtn.clicked.connect(lambda: (self.addSymbolToInput("-")))
+        self.CommaBtn.clicked.connect(lambda: (self.addSymbolToInput(".")))
+        self.FacBtn.clicked.connect(lambda: (self.addSymbolToInput("!")))
+        self.PowBtn.clicked.connect(lambda: (self.addSymbolToInput("^")))
+        self.SqrBtn.clicked.connect(lambda: (self.addSymbolToInput("sqrt")))
+        self.SinBtn.clicked.connect(lambda: (self.addSymbolToInput("sin")))
+        self.CosBtn.clicked.connect(lambda: (self.addSymbolToInput("cos")))
         self.delHistoryBtn.clicked.connect(self.delHistory)
         self.ClearBtn.clicked.connect(self.clear)
         self.BackspaceBtn.clicked.connect(self.backspace)
@@ -889,7 +889,7 @@ class Ui_calculator(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:15pt;\"><br /></p></body></html>"))
 
 
-    def addSymbolsToInput(self, num):
+    def addSymbolToInput(self, num):
         curText = self.lineInput.text()
         curText += str(num)
         self.lineInput.setText(curText)
@@ -901,7 +901,21 @@ class Ui_calculator(object):
 
     def backspace(self):
         curText = self.lineInput.text()
-        self.lineInput.setText(curText[:-1])
+        if len(curText) == 0:
+            return
+
+        #if char is not alphabet, erase and return
+        if not curText[-1].isalpha():
+            self.lineInput.setText(curText[:-1])
+            return
+
+        #erase while char is alphabet
+        while len(self.lineInput.text()):
+            curText = self.lineInput.text()
+            if not curText[-1].isalpha():
+                break
+            self.lineInput.setText(curText[:-1])
+
         self.lineInput.setFocus()
 
     def ansToInput(self):
