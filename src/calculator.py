@@ -901,7 +901,20 @@ class Ui_calculator(object):
 
     def backspace(self):
         curText = self.lineInput.text()
-        self.lineInput.setText(curText[:-1])
+        if len(curText) == 0:
+            return
+
+        if not curText[-1].isalpha():
+            self.lineInput.setText(curText[:-1])
+            return
+
+        while len(self.lineInput.text()):
+            curText = self.lineInput.text()
+            if not curText[-1].isalpha():
+                break
+
+            self.lineInput.setText(curText[:-1])
+            
         self.lineInput.setFocus()
 
     def ansToInput(self):
