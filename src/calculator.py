@@ -912,8 +912,7 @@ class Ui_calculator(object):
         self.textDisplay.clear()
         self.lineInput.setFocus()
 
-    def splitExprToArr(self):
-            expression = self.lineInput.text()
+    def splitExprToArr(self, expression):
             expArr = re.split(r'(\+|-|×|/|!|\^|sqrt|sin|cos)', expression)
             
             for i in expArr:
@@ -921,14 +920,17 @@ class Ui_calculator(object):
                     expArr.remove('')
 
             for index,i in enumerate(expArr):
-                if (i == "-" or i == "+")and(index == 0 or re.fullmatch(r'(\+|-|×|/|^)',expArr[index-1])):
+                if (i == "-" or i == "+") and index == 0:
                     expArr.insert(0,"0")
+                elif (i == "-" or i == "+") and re.fullmatch(r'(×|/|^)',expArr[index-1]):
+                    expArr[index] = str(expArr[index]) + str(expArr.pop(index+1))
             print(expArr)######################################################################################debug
             return expArr
 
     def calculate(self,key):
         try:
-            expArr = self.splitExprToArr
+            expression = self.lineInput.text()
+            expArr = self.splitExprToArr(expression)
 
             if len(expArr) == 0:
                 self.lineInput.setFocus()
@@ -942,31 +944,34 @@ class Ui_calculator(object):
                 for opearation in ["!","^","sqrt","sin","cos"]:    
                     if i == opearation:
                         operand = expArr[index-1]
-                        operand2 = expArr[index+1]
 
                         if i == "!":
                             expr = 'calcLib.fac('+operand+')'
                             expArr[index] = expr
                             indexesToRemove.insert(0,index-1)
                         elif i == "sin":
+                            operand2 = expArr[index+1]
                             expr = 'calcLib.sin('+operand2+')'
                             expArr[index+1] = expr
                             indexesToRemove.insert(0,index)
-                        elif i == "!":
+                        elif i == "cos":
+                            operand2 = expArr[index+1]
                             expr = 'calcLib.cos('+operand2+')'
                             expArr[index+1] = expr
                             indexesToRemove.insert(0,index)
                         elif i == "^":    
+                            operand2 = expArr[index+1]
                             expr = 'calcLib.pwr('+operand+','+operand2+')'
                             expArr[index+1] = expr
                             indexesToRemove.insert(0,index-1)
                             indexesToRemove.insert(0,index)
                         elif i == "sqrt":
+                            operand2 = expArr[index+1]
                             expr = 'calcLib.root('+operand2+','+operand+')'
                             expArr[index+1] = expr
-                            indexesToRemove.insert(0,index)
                             indexesToRemove.insert(0,index-1)
-            
+                            indexesToRemove.insert(0,index)
+            print(expr)##############################################debug
             for index in indexesToRemove:
                 expArr.pop(int(index))
             indexesToRemove.clear()
@@ -1002,6 +1007,8 @@ class Ui_calculator(object):
                         else:
                             expr = 'calcLib.sub('+operand+','+operand2+')'
                             expArr[index+1] = expr
+                        indexesToRemove.insert(0,index-1)
+                        indexesToRemove.insert(0,index)
 
             for index in indexesToRemove:
                 expArr.pop(int(index))
@@ -1013,7 +1020,7 @@ class Ui_calculator(object):
         except:
             self.res="Wrong input!"
 
-        self.textDisplay.append(self.expression + '        =       ' + str(self.res))
+        self.textDisplay.append(expression + '        =       ' + str(self.res))
         self.textDisplay.ensureCursorVisible()
         self.lineInput.setFocus()
 
