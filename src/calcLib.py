@@ -49,3 +49,6 @@ def root(x,n):
 
 def ln(x):
     return 1
+
+def pi():
+    return 1

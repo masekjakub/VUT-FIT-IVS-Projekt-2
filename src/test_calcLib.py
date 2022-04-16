@@ -1,5 +1,6 @@
 import pytest
 import calcLib
+from cmath import pi
 
 class Test_Basic:
 
@@ -119,3 +120,6 @@ class Test_advanced:
     def test_ln_exception(self,x):
         with pytest.raises(TypeError):
             calcLib.ln(x)
+    
+    def test_pi(self):
+        assert "{0:.15f}".format(calcLib.pi()) == "{0:.15f}".format(pi)
