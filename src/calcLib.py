@@ -47,5 +47,5 @@ def root(x,n):
         n = 1 / n
     return x**n
 
-def another_function():     #Additional function (which one?)
+def ln(x):
     return 1

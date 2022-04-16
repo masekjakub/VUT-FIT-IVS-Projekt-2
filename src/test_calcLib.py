@@ -102,3 +102,20 @@ class Test_advanced:
     def test_root_exception(self,x,n):
         with pytest.raises(TypeError):
             calcLib.root(x,n)
+
+    @pytest.mark.parametrize("x,y",[(1,0),
+                                    (2,0.6931471805599453),
+                                    (3,1.0986122886681096),
+                                    (5,1.6094379124341003),
+                                    (50,3.912023005428146),
+                                    (0.05,-2.995732273553991),
+                                    (0.5,-0.6931471805599453),
+                                    (0.3,-1.2039728043259361),
+                                    (0.2,-1.6094379124341003)])
+    def test_ln(self,x,y):
+        assert "{0:.15}".format(calcLib.ln(x)) == "{0:.15}".format(y)
+    
+    @pytest.mark.parametrize("x",[0,-1,-2,-500,-0.1,-0.5,-0.0000003])
+    def test_ln_exception(self,x):
+        with pytest.raises(TypeError):
+            calcLib.ln(x)
