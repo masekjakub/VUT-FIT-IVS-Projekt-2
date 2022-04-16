@@ -928,20 +928,20 @@ class Ui_calculator(object):
         self.lineInput.setFocus()
 
     def splitExprToArr(self, expression):
-            expArr = re.split(r'(\+|-|×|/|!|\^|sqrt|sin|cos)', expression)
+            expArr = re.split(r'(\+|-|x|\*|/|!|\^|sqrt|sin|cos)', expression)
             
             for i in expArr:
                 if i == '':
                     expArr.remove('')
 
             for index,i in enumerate(expArr):
-                if re.fullmatch(r'(\+|-|×|/)',expArr[index]) and index == 0:
+                if re.fullmatch(r'(\+|-|x|*|/)',expArr[index]) and index == 0:
                     expArr.insert(0,"0")
-                elif (i == "-" or i == "+") and re.fullmatch(r'(×|/|^)',expArr[index-1]):
+                elif (i == "-" or i == "+") and re.fullmatch(r'(x|\*|/|^)',expArr[index-1]):
                     expArr[index] = str(expArr[index]) + str(expArr.pop(index+1))
-                elif (i == "sqrt" or i == "^") and (index == 0 or re.fullmatch(r'(×|/|\+|-)',expArr[index-1])):
+                elif (i == "sqrt" or i == "^") and (index == 0 or re.fullmatch(r'(x|\*|/|\+|-)',expArr[index-1])):
                     expArr.insert(index,"2")
-                elif (i == "!") and (index == 0 or re.fullmatch(r'(×|/|\+|-)',expArr[index-1])):
+                elif (i == "!") and (index == 0 or re.fullmatch(r'(x|\*|/|\+|-)',expArr[index-1])):
                     expArr.pop(index)
                     
             print(expArr)######################################################################################debug
@@ -998,11 +998,11 @@ class Ui_calculator(object):
             
             #process operations with 2nd highest priority
             for index,i in enumerate(expArr):
-                for operation in ["×","/"]:
+                for operation in ["x","*","/"]:
                     if i == operation:
                         operand = expArr[index-1]
                         operand2 = expArr[index+1]
-                        if i == "×":
+                        if i == "x" or i == "*":
                             expr = 'calcLib.mul('+operand+','+operand2+')'
                             expArr[index+1] = expr
                         else:
