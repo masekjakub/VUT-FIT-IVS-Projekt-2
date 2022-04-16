@@ -3,3 +3,4 @@
 src/__pycache__/
 #VS code
 .vscode/
+src/fillData
