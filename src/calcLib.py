@@ -1,4 +1,6 @@
 #CALC LIBRARY
+from math import log
+
 def add(x,y):
     return x + y
 
@@ -28,7 +30,7 @@ def fac(x):
 def pwr(x,n):
     if n < 0:
         x = 1 / x
-        n = 0 - n
+        n = -n
     return x**n
 
 def root(x,n):
@@ -39,7 +41,7 @@ def root(x,n):
     elif n == 1:
         return x
     elif (n % 2) == 1 and x < 0:
-        x = 0 - x
+        x = -x
         n = 1 / n
         x = x**n
         return -x
@@ -48,7 +50,13 @@ def root(x,n):
     return x**n
 
 def ln(x):
-    return 1
+    e = 2.718281828459045 #Euler's number
+    if x <= 0: 
+        raise TypeError("The natural logarithm is defined only in the interval") 
+    else:
+        x = log(x, e)
+    return x
 
 def pi():
-    return 1
+    pi = 3.141592653589793
+    return pi
