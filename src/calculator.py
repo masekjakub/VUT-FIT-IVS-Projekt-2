@@ -15,7 +15,6 @@ import re
 import calcLib
 import keyboard
 
-
 class Ui_calculator(object):
     def setupUi(self, calculator):
         calculator.setObjectName("calculator")
@@ -28,21 +27,16 @@ class Ui_calculator(object):
         calculator.setMinimumSize(QtCore.QSize(630, 560))
         calculator.setMaximumSize(QtCore.QSize(630, 560))
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         calculator.setFont(font)
         calculator.setStyleSheet("background-color: rgb(72, 72, 72);")
         self.centralwidget = QtWidgets.QWidget(calculator)
-        font = QtGui.QFont()
-        font.setFamily("Chandas")
-        font.setPointSize(15)
-        self.centralwidget.setFont(font)
-        self.centralwidget.setStyleSheet("")
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayoutWidget = QtWidgets.QWidget(self.centralwidget)
         self.gridLayoutWidget.setGeometry(QtCore.QRect(10, 200, 610, 351))
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.gridLayoutWidget.setFont(font)
@@ -70,7 +64,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.Num7.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.Num7.setFont(font)
@@ -97,7 +91,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.MultiplyBtn.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.MultiplyBtn.setFont(font)
@@ -124,7 +118,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.Num9.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.Num9.setFont(font)
@@ -151,7 +145,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.Num4.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.Num4.setFont(font)
@@ -178,7 +172,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.Num6.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.Num6.setFont(font)
@@ -206,7 +200,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.Num1.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.Num1.setFont(font)
@@ -233,7 +227,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.Num5.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.Num5.setFont(font)
@@ -260,12 +254,12 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.SqrBtn.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.SqrBtn.setFont(font)
         self.SqrBtn.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
-        self.SqrBtn.setToolTip("Square root")
+        self.SqrBtn.setToolTip("Root")
         self.SqrBtn.setStyleSheet("background-color: rgb(85, 85, 85);")
         self.SqrBtn.setObjectName("SqrBtn")
         self.GridNumbers.addWidget(self.SqrBtn, 2, 6, 1, 1)
@@ -287,7 +281,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.Num0.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.Num0.setFont(font)
@@ -317,7 +311,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.Num3.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.Num3.setFont(font)
@@ -344,7 +338,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.PowBtn.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.PowBtn.setFont(font)
@@ -371,7 +365,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.FacBtn.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.FacBtn.setFont(font)
@@ -398,7 +392,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.Num2.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.Num2.setFont(font)
@@ -425,7 +419,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.EqualBtn.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.EqualBtn.setFont(font)
@@ -452,13 +446,14 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.BackspaceBtn.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
-        font.setPointSize(15)
+        font.setFamily("Calibri")
+        font.setPointSize(12)
         font.setKerning(False)
         self.BackspaceBtn.setFont(font)
         self.BackspaceBtn.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
-        self.BackspaceBtn.setToolTip("")
+        self.BackspaceBtn.setToolTip("Backspace")
         self.BackspaceBtn.setStyleSheet("background-color: rgb(85, 85, 85);")
+        self.BackspaceBtn.setText("⌫")
         self.BackspaceBtn.setObjectName("BackspaceBtn")
         self.GridNumbers.addWidget(self.BackspaceBtn, 0, 6, 1, 1)
         self.Num8 = QtWidgets.QPushButton(self.gridLayoutWidget)
@@ -479,7 +474,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.Num8.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.Num8.setFont(font)
@@ -506,7 +501,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.AnsBtn.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.AnsBtn.setFont(font)
@@ -533,7 +528,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.CommaBtn.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.CommaBtn.setFont(font)
@@ -542,12 +537,12 @@ class Ui_calculator(object):
         self.CommaBtn.setStyleSheet("background-color: rgb(85, 85, 85);")
         self.CommaBtn.setObjectName("CommaBtn")
         self.GridNumbers.addWidget(self.CommaBtn, 3, 0, 1, 1)
-        self.SinBtn = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.LnBtn = QtWidgets.QPushButton(self.gridLayoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.SinBtn.sizePolicy().hasHeightForWidth())
-        self.SinBtn.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.LnBtn.sizePolicy().hasHeightForWidth())
+        self.LnBtn.setSizePolicy(sizePolicy)
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -558,23 +553,22 @@ class Ui_calculator(object):
         brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
-        self.SinBtn.setPalette(palette)
+        self.LnBtn.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
-        self.SinBtn.setFont(font)
-        self.SinBtn.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
-        self.SinBtn.setToolTip("Power")
-        self.SinBtn.setStyleSheet("background-color: rgb(85, 85, 85);")
-        self.SinBtn.setObjectName("SinBtn")
-        self.GridNumbers.addWidget(self.SinBtn, 1, 7, 1, 1)
-        self.CosBtn = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.LnBtn.setFont(font)
+        self.LnBtn.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
+        self.LnBtn.setStyleSheet("background-color: rgb(85, 85, 85);")
+        self.LnBtn.setObjectName("LnBtn")
+        self.GridNumbers.addWidget(self.LnBtn, 1, 7, 1, 1)
+        self.PiBtn = QtWidgets.QPushButton(self.gridLayoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.CosBtn.sizePolicy().hasHeightForWidth())
-        self.CosBtn.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.PiBtn.sizePolicy().hasHeightForWidth())
+        self.PiBtn.setSizePolicy(sizePolicy)
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -585,17 +579,17 @@ class Ui_calculator(object):
         brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
-        self.CosBtn.setPalette(palette)
+        self.PiBtn.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
-        self.CosBtn.setFont(font)
-        self.CosBtn.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
-        self.CosBtn.setToolTip("Power")
-        self.CosBtn.setStyleSheet("background-color: rgb(85, 85, 85);")
-        self.CosBtn.setObjectName("CosBtn")
-        self.GridNumbers.addWidget(self.CosBtn, 2, 7, 1, 1)
+        self.PiBtn.setFont(font)
+        self.PiBtn.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
+        self.PiBtn.setToolTip("Pi")
+        self.PiBtn.setStyleSheet("background-color: rgb(85, 85, 85);")
+        self.PiBtn.setObjectName("PiBtn")
+        self.GridNumbers.addWidget(self.PiBtn, 2, 7, 1, 1)
         self.PlusBtn = QtWidgets.QPushButton(self.gridLayoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
@@ -614,7 +608,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.PlusBtn.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.PlusBtn.setFont(font)
@@ -641,7 +635,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.DivBtn.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.DivBtn.setFont(font)
@@ -668,7 +662,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.ClearBtn.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.ClearBtn.setFont(font)
@@ -695,7 +689,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
         self.MinusBtn.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setKerning(False)
         self.MinusBtn.setFont(font)
@@ -707,7 +701,7 @@ class Ui_calculator(object):
         spacerItem = QtWidgets.QSpacerItem(8, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
         self.GridNumbers.addItem(spacerItem, 0, 4, 1, 1)
         self.lineInput = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineInput.setGeometry(QtCore.QRect(0, 140, 631, 41))
+        self.lineInput.setGeometry(QtCore.QRect(0, 138, 631, 41))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -729,16 +723,13 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.PlaceholderText, brush)
         self.lineInput.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(16)
         font.setBold(False)
         font.setWeight(50)
         font.setKerning(False)
         self.lineInput.setFont(font)
-        self.lineInput.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         self.lineInput.setStyleSheet("background-color: rgb(72, 72, 72);")
-        self.lineInput.setInputMethodHints(QtCore.Qt.ImhFormattedNumbersOnly)
-        self.lineInput.setInputMask("")
         self.lineInput.setFrame(False)
         self.lineInput.setPlaceholderText("10+5")
         self.lineInput.setObjectName("lineInput")
@@ -747,16 +738,25 @@ class Ui_calculator(object):
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Text, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255, 128))
         brush.setStyle(QtCore.Qt.NoBrush)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.PlaceholderText, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Text, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255, 128))
         brush.setStyle(QtCore.Qt.NoBrush)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.PlaceholderText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Text, brush)
@@ -771,6 +771,7 @@ class Ui_calculator(object):
         font.setItalic(False)
         font.setWeight(50)
         self.textDisplay.setFont(font)
+        self.textDisplay.setMouseTracking(False)
         self.textDisplay.setAutoFillBackground(False)
         self.textDisplay.setStyleSheet("font: 15pt \"Segoe UI Emoji\";\n"
 "background-color: rgb(72, 72, 72);\n"
@@ -778,43 +779,70 @@ class Ui_calculator(object):
 "")
         self.textDisplay.setInputMethodHints(QtCore.Qt.ImhMultiLine)
         self.textDisplay.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.textDisplay.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.textDisplay.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustIgnored)
         self.textDisplay.setOpenLinks(True)
         self.textDisplay.setObjectName("textDisplay")
         self.line = QtWidgets.QFrame(self.centralwidget)
         self.line.setGeometry(QtCore.QRect(-20, 130, 691, 10))
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(8)
         self.line.setFont(font)
-        self.line.setStyleSheet("")
         self.line.setFrameShape(QtWidgets.QFrame.HLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line.setObjectName("line")
         self.line_2 = QtWidgets.QFrame(self.centralwidget)
-        self.line_2.setGeometry(QtCore.QRect(-20, 180, 691, 10))
+        self.line_2.setGeometry(QtCore.QRect(-20, 178, 691, 10))
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(8)
         self.line_2.setFont(font)
-        self.line_2.setStyleSheet("")
         self.line_2.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_2.setObjectName("line_2")
         self.delHistoryBtn = QtWidgets.QPushButton(self.centralwidget)
         self.delHistoryBtn.setGeometry(QtCore.QRect(570, 10, 31, 31))
         palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(72, 72, 72))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.ButtonText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(72, 72, 72))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Base, brush)
+        brush = QtGui.QBrush(QtGui.QColor(72, 72, 72))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Window, brush)
+        brush = QtGui.QBrush(QtGui.QColor(72, 72, 72))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.ButtonText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(72, 72, 72))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Base, brush)
+        brush = QtGui.QBrush(QtGui.QColor(72, 72, 72))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Window, brush)
+        brush = QtGui.QBrush(QtGui.QColor(72, 72, 72))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(72, 72, 72))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Base, brush)
+        brush = QtGui.QBrush(QtGui.QColor(72, 72, 72))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Window, brush)
         self.delHistoryBtn.setPalette(palette)
+        font = QtGui.QFont()
+        font.setFamily("Calibri")
+        self.delHistoryBtn.setFont(font)
         self.delHistoryBtn.setObjectName("delHistoryBtn")
         calculator.setCentralWidget(self.centralwidget)
 
@@ -837,8 +865,8 @@ class Ui_calculator(object):
         self.FacBtn.clicked.connect(lambda: (self.addSymbolToInput("!")))
         self.PowBtn.clicked.connect(lambda: (self.addSymbolToInput("^")))
         self.SqrBtn.clicked.connect(lambda: (self.addSymbolToInput("sqrt")))
-        self.SinBtn.clicked.connect(lambda: (self.addSymbolToInput("sin")))
-        self.CosBtn.clicked.connect(lambda: (self.addSymbolToInput("cos")))
+        self.PiBtn.clicked.connect(lambda: (self.addSymbolToInput("π")))
+        self.LnBtn.clicked.connect(lambda: (self.addSymbolToInput("ln")))
         self.delHistoryBtn.clicked.connect(self.delHistory)
         self.ClearBtn.clicked.connect(self.clear)
         self.BackspaceBtn.clicked.connect(self.backspace)
@@ -857,25 +885,24 @@ class Ui_calculator(object):
         _translate = QtCore.QCoreApplication.translate
         calculator.setWindowTitle(_translate("calculator", "Calculator"))
         self.Num7.setText(_translate("calculator", "7"))
-        self.MultiplyBtn.setText(_translate("calculator", "*"))
+        self.MultiplyBtn.setText(_translate("calculator", "×"))
         self.Num9.setText(_translate("calculator", "9"))
         self.Num4.setText(_translate("calculator", "4"))
         self.Num6.setText(_translate("calculator", "6"))
         self.Num1.setText(_translate("calculator", "1"))
         self.Num5.setText(_translate("calculator", "5"))
-        self.SqrBtn.setText(_translate("calculator", "sqrt"))
+        self.SqrBtn.setText(_translate("calculator", "n√x"))
         self.Num0.setText(_translate("calculator", "0"))
         self.Num3.setText(_translate("calculator", "3"))
-        self.PowBtn.setText(_translate("calculator", "pwr"))
+        self.PowBtn.setText(_translate("calculator", "x^n"))
         self.FacBtn.setText(_translate("calculator", "x!"))
         self.Num2.setText(_translate("calculator", "2"))
         self.EqualBtn.setText(_translate("calculator", "="))
-        self.BackspaceBtn.setText(_translate("calculator", "Back"))
         self.Num8.setText(_translate("calculator", "8"))
         self.AnsBtn.setText(_translate("calculator", "Ans"))
         self.CommaBtn.setText(_translate("calculator", "."))
-        self.SinBtn.setText(_translate("calculator", "sin x"))
-        self.CosBtn.setText(_translate("calculator", "cos x"))
+        self.LnBtn.setText(_translate("calculator", "ln x"))
+        self.PiBtn.setText(_translate("calculator", "π"))
         self.PlusBtn.setText(_translate("calculator", "+"))
         self.DivBtn.setText(_translate("calculator", "/"))
         self.ClearBtn.setText(_translate("calculator", "C"))
@@ -885,8 +912,8 @@ class Ui_calculator(object):
         self.textDisplay.setHtml(_translate("calculator", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Segoe UI Emoji\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:15pt;\"><br /></p></body></html>"))
+"</style></head><body style=\" font-family:\'Segoe UI Emoji\'; font-size:15pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
 
 
     def addSymbolToInput(self, num):
@@ -928,7 +955,7 @@ class Ui_calculator(object):
         self.lineInput.setFocus()
 
     def splitExprToArr(self, expression):
-            expArr = re.split(r'(\+|-|x|\*|/|!|\^|sqrt|sin|cos)', expression)
+            expArr = re.split(r'(\+|-|×|/|!|\^|sqrt|π|ln)', expression)
             
             for i in expArr:
                 if i == '':
@@ -937,14 +964,13 @@ class Ui_calculator(object):
             for index,i in enumerate(expArr):
                 if re.fullmatch(r'(\+|-|x|*|/)',expArr[index]) and index == 0:
                     expArr.insert(0,"0")
-                elif (i == "-" or i == "+") and re.fullmatch(r'(x|\*|/|^)',expArr[index-1]):
+                elif (i == "-" or i == "+") and re.fullmatch(r'(×|/|^|ln)',expArr[index-1]):
                     expArr[index] = str(expArr[index]) + str(expArr.pop(index+1))
                 elif (i == "sqrt" or i == "^") and (index == 0 or re.fullmatch(r'(x|\*|/|\+|-)',expArr[index-1])):
                     expArr.insert(index,"2")
                 elif (i == "!") and (index == 0 or re.fullmatch(r'(x|\*|/|\+|-)',expArr[index-1])):
                     expArr.pop(index)
                     
-            print(expArr)######################################################################################debug
             return expArr
 
     def calculate(self,key):
@@ -959,26 +985,37 @@ class Ui_calculator(object):
             expr = ""
             indexesToRemove = []
 
-            #process operations with highest priority 
+            #process operations with highest priority
+            for index,i in enumerate(expArr):   
+                if i == "π":
+                    expr = 'calcLib.pi()'
+                    expArr[index] = expr
+                    if index > 0 and re.match(r'(\d)',expArr[index-1]):
+                        expArr.insert(index,"×")
+                    elif not len(expArr)-index-1 == 0 and re.match(r'(\+|-|×|/|!|\^)',expArr[index+1]):
+                        expArr.insert(index+1,"×")
+
+            #process operations with 2nd highest priority
             for index,i in enumerate(expArr):
-                for opearation in ["!","^","sqrt","sin","cos"]:    
+                for opearation in ["!","^","sqrt","ln"]:    
                     if i == opearation:
+
+                        if i == "ln":
+                            operand2 = expArr[index+1]
+                            expr = 'calcLib.ln('+operand2+')'
+                            expArr[index+1] = expr
+                            indexesToRemove.insert(0,index)
+                            if index > 0 and not re.match(r'(\+|-|×|/|!|\^)',expArr[index-1]):
+                                expArr.insert(index+1,"×")
+                            break
+
                         operand = expArr[index-1]
 
                         if i == "!":
                             expr = 'calcLib.fac('+operand+')'
                             expArr[index] = expr
                             indexesToRemove.insert(0,index-1)
-                        elif i == "sin":
-                            operand2 = expArr[index+1]
-                            expr = 'calcLib.sin('+operand2+')'
-                            expArr[index+1] = expr
-                            indexesToRemove.insert(0,index)
-                        elif i == "cos":
-                            operand2 = expArr[index+1]
-                            expr = 'calcLib.cos('+operand2+')'
-                            expArr[index+1] = expr
-                            indexesToRemove.insert(0,index)
+
                         elif i == "^":    
                             operand2 = expArr[index+1]
                             expr = 'calcLib.pwr('+operand+','+operand2+')'
@@ -991,12 +1028,12 @@ class Ui_calculator(object):
                             expArr[index+1] = expr
                             indexesToRemove.insert(0,index-1)
                             indexesToRemove.insert(0,index)
-            print(expr)##############################################debug
             for index in indexesToRemove:
                 expArr.pop(int(index))
             indexesToRemove.clear()
+            print(expArr)##############################################debug
             
-            #process operations with 2nd highest priority
+            #process operations with 3nd highest priority
             for index,i in enumerate(expArr):
                 for operation in ["x","*","/"]:
                     if i == operation:
@@ -1015,7 +1052,7 @@ class Ui_calculator(object):
                 expArr.pop(int(index))
             indexesToRemove.clear()
 
-            #process operations with 3rd highest priority
+            #process operations with 4rd highest priority
             for index,i in enumerate(expArr):
                 for operation in ["+","-"]:
                     if i == operation:
@@ -1038,6 +1075,7 @@ class Ui_calculator(object):
             print(expr)##############################################debug
             self.res = eval(expr)  
         except:
+            print(expArr)######################################################################################debug
             self.res="Wrong input!"
 
         self.textDisplay.append(expression + '        =       ' + str(self.res))
