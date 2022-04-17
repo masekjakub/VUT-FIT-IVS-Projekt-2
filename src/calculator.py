@@ -935,23 +935,10 @@ class Ui_calculator(object):
             return
 
         cursorPos = self.lineInput.cursorPosition()-1
-        #if char is not alphabet, erase and return
-        if not curText[cursorPos-1].isalpha():
-            self.lineInput.setText(curText[0 : cursorPos : ] + curText[cursorPos + 1 : :])
-            self.lineInput.setFocus()
-            self.lineInput.setCursorPosition(cursorPos)
-            return
-
-        #erase while current char is alphabet
-        while len(self.lineInput.text()):
-            curText = self.lineInput.text()
-            if not curText[cursorPos].isalpha():
-                break
-            self.lineInput.setText(curText[0 : cursorPos : ] + curText[cursorPos + 1 : :])
-            #self.lineInput.setFocus()
-            cursorPos-=1
+        self.lineInput.setText(curText[0 : cursorPos : ] + curText[cursorPos + 1 : :])
         self.lineInput.setFocus()
-        self.lineInput.setCursorPosition(cursorPos+1)
+        self.lineInput.setCursorPosition(cursorPos)
+        return
         
 
     def ansToInput(self):
