@@ -936,7 +936,6 @@ class Ui_calculator(object):
 
         cursorPos = self.lineInput.cursorPosition()-1
         #if char is not alphabet, erase and return
-        print(curText[cursorPos])
         if not curText[cursorPos-1].isalpha():
             self.lineInput.setText(curText[0 : cursorPos : ] + curText[cursorPos + 1 : :])
             self.lineInput.setFocus()
@@ -981,7 +980,6 @@ class Ui_calculator(object):
                 elif (i == "!") and (index == 0 or re.fullmatch(r'(x|\*|/|\+|-)',expArr[index-1])):
                     expArr.pop(index)
                     
-            print(expArr)##############################################debug
             return expArr
 
     def calculate(self,key):
@@ -1000,11 +998,12 @@ class Ui_calculator(object):
                 if i == "π":
                     expr = 'calcLib.pi()'
                     expArr[index] = expr
+                    if not len(expArr)-index-1 == 0 and not re.match(r'(\+|-|x|/|!|\^)',expArr[index+1]):
+                        expArr.insert(index+1,"x")
                     if index > 0 and not re.fullmatch(r'(\+|-|x|/|!|\^)',expArr[index-1]):
                         expArr.insert(index,"x")
-                    elif not len(expArr)-index-1 == 0 and not re.match(r'(\+|-|x|/|!|\^)',expArr[index+1]):
-                        expArr.insert(index+1,"x")
 
+            print(expArr)##############################################debug
             #process operations with 2nd highest priority
             for index,i in enumerate(expArr):
                 for opearation in ["!","^","√","ln"]:    
