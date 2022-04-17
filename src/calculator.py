@@ -931,19 +931,26 @@ class Ui_calculator(object):
         if len(curText) == 0:
             return
 
+        cursorPos = self.lineInput.cursorPosition()-1
         #if char is not alphabet, erase and return
-        if not curText[-1].isalpha():
-            self.lineInput.setText(curText[:-1])
+        print(curText[cursorPos])
+        if not curText[cursorPos-1].isalpha():
+            self.lineInput.setText(curText[0 : cursorPos : ] + curText[cursorPos + 1 : :])
+            self.lineInput.setFocus()
+            self.lineInput.setCursorPosition(cursorPos)
             return
 
-        #erase while char is alphabet
+        #erase while current char is alphabet
         while len(self.lineInput.text()):
             curText = self.lineInput.text()
-            if not curText[-1].isalpha():
+            if not curText[cursorPos].isalpha():
                 break
-            self.lineInput.setText(curText[:-1])
-
+            self.lineInput.setText(curText[0 : cursorPos : ] + curText[cursorPos + 1 : :])
+            #self.lineInput.setFocus()
+            cursorPos-=1
         self.lineInput.setFocus()
+        self.lineInput.setCursorPosition(cursorPos+1)
+        
 
     def ansToInput(self):
         curText = self.lineInput.text()
@@ -1071,6 +1078,7 @@ class Ui_calculator(object):
             indexesToRemove.clear()
                 
 
+            print(expArr)##############################################debug
             print(expr)##############################################debug
             self.res = eval(expr)  
         except:
