@@ -765,7 +765,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.PlaceholderText, brush)
         self.textDisplay.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setBold(False)
         font.setItalic(False)
@@ -773,7 +773,7 @@ class Ui_calculator(object):
         self.textDisplay.setFont(font)
         self.textDisplay.setMouseTracking(False)
         self.textDisplay.setAutoFillBackground(False)
-        self.textDisplay.setStyleSheet("font: 15pt \"Segoe UI Emoji\";\n"
+        self.textDisplay.setStyleSheet("font: 15pt \"Calibri\";\n"
 "background-color: rgb(72, 72, 72);\n"
 "color:white;\n"
 "")
@@ -859,12 +859,12 @@ class Ui_calculator(object):
         self.Num9.clicked.connect(lambda: (self.addSymbolToInput(9)))
         self.PlusBtn.clicked.connect(lambda: (self.addSymbolToInput("+")))
         self.DivBtn.clicked.connect(lambda: (self.addSymbolToInput("/")))
-        self.MultiplyBtn.clicked.connect(lambda: (self.addSymbolToInput("×")))
+        self.MultiplyBtn.clicked.connect(lambda: (self.addSymbolToInput("x")))
         self.MinusBtn.clicked.connect(lambda: (self.addSymbolToInput("-")))
         self.CommaBtn.clicked.connect(lambda: (self.addSymbolToInput(".")))
         self.FacBtn.clicked.connect(lambda: (self.addSymbolToInput("!")))
         self.PowBtn.clicked.connect(lambda: (self.addSymbolToInput("^")))
-        self.SqrBtn.clicked.connect(lambda: (self.addSymbolToInput("sqrt")))
+        self.SqrBtn.clicked.connect(lambda: (self.addSymbolToInput("√")))
         self.PiBtn.clicked.connect(lambda: (self.addSymbolToInput("π")))
         self.LnBtn.clicked.connect(lambda: (self.addSymbolToInput("ln")))
         self.delHistoryBtn.clicked.connect(self.delHistory)
@@ -910,9 +910,9 @@ class Ui_calculator(object):
         self.delHistoryBtn.setToolTip(_translate("calculator", "Delete history"))
         self.delHistoryBtn.setText(_translate("calculator", "DEL"))
         self.textDisplay.setHtml(_translate("calculator", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"UTF-8\"><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Segoe UI Emoji\'; font-size:15pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:\'Calibri\'; font-size:15pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
 
 
@@ -955,29 +955,29 @@ class Ui_calculator(object):
         self.lineInput.setFocus()
 
     def splitExprToArr(self, expression):
-            expArr = re.split(r'(\+|-|×|/|!|\^|sqrt|π|ln)', expression)
+            expArr = re.split(r'(\+|-|x|/|!|\^|√|π|ln)', expression)
             
             for i in expArr:
                 if i == '':
                     expArr.remove('')
 
             for index,i in enumerate(expArr):
-                if re.fullmatch(r'(\+|-|x|*|/)',expArr[index]) and index == 0:
+                if re.fullmatch(r'(\+|-|x|\*|/)',expArr[index]) and index == 0:
                     expArr.insert(0,"0")
-                elif (i == "-" or i == "+") and re.fullmatch(r'(×|/|^|ln)',expArr[index-1]):
+                elif (i == "-" or i == "+") and re.fullmatch(r'(x|/|^|ln)',expArr[index-1]):
                     expArr[index] = str(expArr[index]) + str(expArr.pop(index+1))
-                elif (i == "sqrt" or i == "^") and (index == 0 or re.fullmatch(r'(x|\*|/|\+|-)',expArr[index-1])):
+                elif (i == "√" or i == "^") and (index == 0 or re.fullmatch(r'(x|\*|/|\+|-)',expArr[index-1])):
                     expArr.insert(index,"2")
                 elif (i == "!") and (index == 0 or re.fullmatch(r'(x|\*|/|\+|-)',expArr[index-1])):
                     expArr.pop(index)
                     
+            print(expArr)##############################################debug
             return expArr
 
     def calculate(self,key):
         try:
             expression = self.lineInput.text()
             expArr = self.splitExprToArr(expression)
-
             if len(expArr) == 0:
                 self.lineInput.setFocus()
                 return
@@ -990,14 +990,14 @@ class Ui_calculator(object):
                 if i == "π":
                     expr = 'calcLib.pi()'
                     expArr[index] = expr
-                    if index > 0 and re.match(r'(\d)',expArr[index-1]):
-                        expArr.insert(index,"×")
-                    elif not len(expArr)-index-1 == 0 and re.match(r'(\+|-|×|/|!|\^)',expArr[index+1]):
-                        expArr.insert(index+1,"×")
+                    if index > 0 and not re.fullmatch(r'(\+|-|x|/|!|\^)',expArr[index-1]):
+                        expArr.insert(index,"x")
+                    elif not len(expArr)-index-1 == 0 and not re.match(r'(\+|-|x|/|!|\^)',expArr[index+1]):
+                        expArr.insert(index+1,"x")
 
             #process operations with 2nd highest priority
             for index,i in enumerate(expArr):
-                for opearation in ["!","^","sqrt","ln"]:    
+                for opearation in ["!","^","√","ln"]:    
                     if i == opearation:
 
                         if i == "ln":
@@ -1005,8 +1005,8 @@ class Ui_calculator(object):
                             expr = 'calcLib.ln('+operand2+')'
                             expArr[index+1] = expr
                             indexesToRemove.insert(0,index)
-                            if index > 0 and not re.match(r'(\+|-|×|/|!|\^)',expArr[index-1]):
-                                expArr.insert(index+1,"×")
+                            if index > 0 and not re.match(r'(\+|-|x|/|!|\^)',expArr[index-1]):
+                                expArr.insert(index+1,"x")
                             break
 
                         operand = expArr[index-1]
@@ -1022,7 +1022,7 @@ class Ui_calculator(object):
                             expArr[index+1] = expr
                             indexesToRemove.insert(0,index-1)
                             indexesToRemove.insert(0,index)
-                        elif i == "sqrt":
+                        elif i == "√":
                             operand2 = expArr[index+1]
                             expr = 'calcLib.root('+operand2+','+operand+')'
                             expArr[index+1] = expr
@@ -1031,7 +1031,6 @@ class Ui_calculator(object):
             for index in indexesToRemove:
                 expArr.pop(int(index))
             indexesToRemove.clear()
-            print(expArr)##############################################debug
             
             #process operations with 3nd highest priority
             for index,i in enumerate(expArr):
@@ -1075,10 +1074,10 @@ class Ui_calculator(object):
             print(expr)##############################################debug
             self.res = eval(expr)  
         except:
-            print(expArr)######################################################################################debug
+            #print(expArr)######################################################################################debug
             self.res="Wrong input!"
 
-        self.textDisplay.append(expression + '        =       ' + str(self.res))
+        self.textDisplay.append(str(expression) + '        =       ' + str(self.res))
         self.textDisplay.ensureCursorVisible()
         self.lineInput.setFocus()
 
