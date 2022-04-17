@@ -918,9 +918,12 @@ class Ui_calculator(object):
 
     def addSymbolToInput(self, num):
         curText = self.lineInput.text()
-        curText += str(num)
+        cursorPos = self.lineInput.cursorPosition()
+
+        curText = curText[0:cursorPos] + str(num) + curText[cursorPos:]
         self.lineInput.setText(curText)
         self.lineInput.setFocus()
+        self.lineInput.setCursorPosition(cursorPos + len(str(num)))
 
     def clear(self):
         self.lineInput.setText("")
