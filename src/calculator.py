@@ -915,7 +915,7 @@ class Ui_calculator(object):
 "</style></head><body style=\" font-family:\'Calibri\'; font-size:15pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
 
-
+    #add symbol from pushed button to inputs cursor position
     def addSymbolToInput(self, num):
         curText = self.lineInput.text()
         cursorPos = self.lineInput.cursorPosition()
@@ -925,10 +925,12 @@ class Ui_calculator(object):
         self.lineInput.setFocus()
         self.lineInput.setCursorPosition(cursorPos + len(str(num)))
 
+    #clear whole input line
     def clear(self):
         self.lineInput.setText("")
         self.lineInput.setFocus()
 
+    #delete one character before cursor positioin
     def backspace(self):
         curText = self.lineInput.text()
         if len(curText) == 0:
@@ -938,18 +940,19 @@ class Ui_calculator(object):
         self.lineInput.setText(curText[0 : cursorPos : ] + curText[cursorPos + 1 : :])
         self.lineInput.setFocus()
         self.lineInput.setCursorPosition(cursorPos)
-        return
-        
 
+    #adds previous result to input line
     def ansToInput(self):
         curText = self.lineInput.text()
         self.lineInput.setText(curText + str(self.res))
         self.lineInput.setFocus()
 
+    #deletes whole history label
     def delHistory(self):
         self.textDisplay.clear()
         self.lineInput.setFocus()
 
+    #splits expression by operators and special characters
     def splitExprToArr(self, expression):
             expArr = re.split(r'(\+|-|x|/|!|\^|√|π|ln)', expression)
             
@@ -958,12 +961,20 @@ class Ui_calculator(object):
                     expArr.remove('')
 
             for index,i in enumerate(expArr):
+
+                #if first char is +|-|x|*|/ adds 0 ahead of expression
                 if re.fullmatch(r'(\+|-|x|\*|/)',expArr[index]) and index == 0:
                     expArr.insert(0,"0")
+
+                #if char index-1 is x|/|^|ln and index is -|+, connect index to number at index+1
                 elif (i == "-" or i == "+") and re.fullmatch(r'(x|/|^|ln)',expArr[index-1]):
                     expArr[index] = str(expArr[index]) + str(expArr.pop(index+1))
+
+                #if operator x|*|/|+|- is ahead of root or power, adds default value (2) ahead of operator √|^
                 elif (i == "√" or i == "^") and (index == 0 or re.fullmatch(r'(x|\*|/|\+|-)',expArr[index-1])):
                     expArr.insert(index,"2")
+
+                #FIX ME
                 elif (i == "!") and (index == 0 or re.fullmatch(r'(x|\*|/|\+|-)',expArr[index-1])):
                     expArr.pop(index)
                     
