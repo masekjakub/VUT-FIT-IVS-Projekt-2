@@ -965,23 +965,25 @@ class Ui_calculator(object):
 
             for index,i in enumerate(expArr):
 
+                #if operator x|*|/|+|- is ahead of root or power, adds default value (2) ahead of operator √|^
+                if (i == "√" or i == "^") and (index == 0 or re.fullmatch(r'(x|\*|/|\+|-)',expArr[index-1])):
+                    expArr.insert(index,"2")
+
                 #if first char is +|-|x|*|/ adds 0 ahead of expression
-                if re.fullmatch(r'(\+|-|x|\*|/)',expArr[index]) and index == 0:
+                elif re.fullmatch(r'(\+|-|x|\*|/)',expArr[index]) and index == 0:
                     expArr.insert(0,"0")
 
                 #if char index-1 is x|/|^|ln and index is -|+, connect index to number at index+1
-                elif (i == "-" or i == "+") and re.fullmatch(r'(x|/|\^|ln|√)',expArr[index-1]):
-                    expArr[index] = str(expArr[index]) + str(expArr.pop(index+1))
-
-                #if operator x|*|/|+|- is ahead of root or power, adds default value (2) ahead of operator √|^
-                elif (i == "√" or i == "^") and (index == 0 or re.fullmatch(r'(x|\*|/|\+|-)',expArr[index-1])):
-                    expArr.insert(index,"2")
+                elif (i == "-" or i == "+") and (index == 0 or re.fullmatch(r'(x|/|\^|ln|√)',expArr[index-1])):
+                    if (re.fullmatch(r'(\d)',expArr[index+1])):
+                        expArr[index] = str(expArr[index]) + str(expArr.pop(index+1))
 
                 #FIX ME
                 elif (i == "!") and (index == 0 or re.fullmatch(r'(x|\*|/|\+|-)',expArr[index-1])):
                     expArr.pop(index)
                     
             return expArr
+
     def removeFromArr(self,arr, indexes):
         for index in indexes:
             arr.pop(int(index))
