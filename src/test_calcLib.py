@@ -94,17 +94,17 @@ class Test_advanced:
     def test_root(self,x,n,y):
         assert "{0:.15f}".format(calcLib.root(x,n)) == "{0:.15f}".format(y)
     
-    @pytest.mark.parametrize("x,n",[(1,-2),
+    @pytest.mark.parametrize("x,n",[(-1,-2),
                                     (5,0),
-                                    (2,1/2),
-                                    (3,-5/3),
+                                    (-2,4),
                                     (-4,2),
-                                    (-8,-3)])
+                                    (9,0)])
     def test_root_exception(self,x,n):
         with pytest.raises(TypeError):
             calcLib.root(x,n)
 
-    @pytest.mark.parametrize("x,y",[(1,0),
+    #NATURAL LOGARITHM
+    @pytest.mark.parametrize("x,y",[(1,0.0),
                                     (2,0.6931471805599453),
                                     (3,1.0986122886681096),
                                     (5,1.6094379124341003),
@@ -121,5 +121,6 @@ class Test_advanced:
         with pytest.raises(TypeError):
             calcLib.ln(x)
     
+    #PI
     def test_pi(self):
         assert "{0:.15f}".format(calcLib.pi()) == "{0:.15f}".format(pi)
