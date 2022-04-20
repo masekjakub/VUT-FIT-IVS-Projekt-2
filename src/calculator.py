@@ -982,6 +982,11 @@ class Ui_calculator(object):
                     expArr.pop(index)
                     
             return expArr
+    def removeFromArr(self,arr, indexes):
+        for index in indexes:
+            arr.pop(int(index))
+        indexes.clear()
+        return arr
 
     def calculate(self,key):
         try:
@@ -1013,9 +1018,7 @@ class Ui_calculator(object):
                     if index > 0 and not re.fullmatch(r'(\+|-|x|\*|/|!|\^|ln)',expArr[index-1]):
                         expArr.insert(index,"x")
 
-            for index in indexesToRemove:
-                expArr.pop(int(index))
-            indexesToRemove.clear()
+            expArr = self.removeFromArr(expArr, indexesToRemove)
 
             #process operations with 2nd highest priority
             for index,i in enumerate(expArr):
@@ -1039,15 +1042,15 @@ class Ui_calculator(object):
                             expArr[index+1] = expr
                             indexesToRemove.insert(0,index-1)
                             indexesToRemove.insert(0,index)
+
                         elif i == "√":
                             operand2 = expArr[index+1]
                             expr = 'calcLib.root('+operand2+','+operand+')'
                             expArr[index+1] = expr
                             indexesToRemove.insert(0,index-1)
                             indexesToRemove.insert(0,index)
-            for index in indexesToRemove:
-                expArr.pop(int(index))
-            indexesToRemove.clear()
+
+            expArr = self.removeFromArr(expArr, indexesToRemove)
             
             #process operations with 3nd highest priority
             for index,i in enumerate(expArr):
@@ -1064,9 +1067,7 @@ class Ui_calculator(object):
                         indexesToRemove.insert(0,index-1)
                         indexesToRemove.insert(0,index)
 
-            for index in indexesToRemove:
-                expArr.pop(int(index))
-            indexesToRemove.clear()
+            expArr = self.removeFromArr(expArr, indexesToRemove)
 
             #process operations with 4rd highest priority
             for index,i in enumerate(expArr):
@@ -1083,12 +1084,9 @@ class Ui_calculator(object):
                         indexesToRemove.insert(0,index-1)
                         indexesToRemove.insert(0,index)
 
-            for index in indexesToRemove:
-                expArr.pop(int(index))
-            indexesToRemove.clear()
+            expArr = self.removeFromArr(expArr, indexesToRemove)
                 
-
-            print(expr)##############################################debug
+            print(expArr)##############################################debug
             self.res = eval(expr)
             self.resString = expression + '        =       ' + str(self.res)
         except TypeError as e: 
