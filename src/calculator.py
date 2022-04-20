@@ -1027,6 +1027,9 @@ class Ui_calculator(object):
                 for opearation in ["^","√","ln"]:    
                     if i == opearation:
 
+                        if not re.match(r'(\d)',expArr[index+1]):
+                            break
+
                         if i == "ln":
                             operand2 = expArr[index+1]
                             expr = 'calcLib.ln('+operand2+')'
@@ -1052,6 +1055,7 @@ class Ui_calculator(object):
                             indexesToRemove.insert(0,index-1)
                             indexesToRemove.insert(0,index)
 
+            print(expArr)##############################################debug
             expArr = self.removeFromArr(expArr, indexesToRemove)
             
             #process operations with 3nd highest priority
@@ -1088,7 +1092,7 @@ class Ui_calculator(object):
 
             expArr = self.removeFromArr(expArr, indexesToRemove)
                 
-            print(expArr)##############################################debug
+            
             self.res = eval(expr)
             self.resString = expression + '        =       ' + str(self.res)
         except TypeError as e: 
