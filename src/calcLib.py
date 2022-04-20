@@ -1,10 +1,10 @@
 """
+Project name: VUT FIT IVS 2. Project
 File: calcLib.py
 Date: 20.4.2022
 Authors: Filip Polomski xpolom00
          Martin Zelenák xzelen27
 Description: Math library for calculator 
-Project name: VUT FIT IVS 2. Project
 """
 
 ##
@@ -81,7 +81,7 @@ def root(x,n):
     elif n == 1:
         return x
     elif (n % 2) == 1 and x < 0: 
-        x = -x # Changes number's sign, because negative number would return number in complex form
+        x = -x #Changes number's sign, because negative number would return number in complex form
         n = 1 / n 
         x = x**n
         return -x
@@ -95,7 +95,7 @@ def root(x,n):
 def ln(x):
     e = 2.718281828459045 #Euler's number
     if x <= 0: 
-        raise TypeError("The natural logarithm is defined only in the interval (0, ∞>")
+        raise TypeError("The natural logarithm is defined only in the interval (0, ∞)")
     else:
         x = log(x, e)
     return x
@@ -105,3 +105,5 @@ def ln(x):
 def pi():
     pi = 3.141592653589793
     return pi
+
+# End of file calcLib.py
