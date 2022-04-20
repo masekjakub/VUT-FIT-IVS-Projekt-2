@@ -974,8 +974,8 @@ class Ui_calculator(object):
                     expArr.insert(0,"0")
 
                 #if char index-1 is x|/|^|ln and index is -|+, connect index to number at index+1
-                elif (i == "-" or i == "+") and (index == 0 or re.fullmatch(r'(x|/|\^|ln|√)',expArr[index-1])):
-                    if (re.fullmatch(r'(\d)',expArr[index+1])):
+                elif (i == "-" or i == "+") and (index == 0 or re.fullmatch(r'(x|/|\^|ln|√|!)',expArr[index-1])):
+                    if (not re.fullmatch(r'(\+|-|x|\*|/|\^|√|π|ln)',expArr[index+1])):
                         expArr[index] = str(expArr[index]) + str(expArr.pop(index+1))
 
                 #FIX ME
@@ -1017,7 +1017,7 @@ class Ui_calculator(object):
                     expArr[index] = expr
                     if not len(expArr)-index-1 == 0 and not re.match(r'(\+|-|x|\*|/|!|\^)',expArr[index+1]):
                         expArr.insert(index+1,"x")
-                    if index > 0 and not re.fullmatch(r'(\+|-|x|\*|/|!|\^|ln)',expArr[index-1]):
+                    if index > 0 and not re.fullmatch(r'(\+|-|x|\*|/|!|\^|√|π|ln)',expArr[index-1]):
                         expArr.insert(index,"x")
 
             expArr = self.removeFromArr(expArr, indexesToRemove)
@@ -1027,8 +1027,6 @@ class Ui_calculator(object):
                 for opearation in ["^","√","ln"]:    
                     if i == opearation:
 
-                        if not re.match(r'(\d)',expArr[index+1]):
-                            break
 
                         if i == "ln":
                             operand2 = expArr[index+1]
@@ -1040,6 +1038,11 @@ class Ui_calculator(object):
                             break
 
                         operand = expArr[index-1]
+                        
+                        
+                        if re.fullmatch(r'(\+|-|x|\*|/|!|\^|√|π|ln)',expArr[index+1]):
+                            print("er")
+                            break
 
                         if i == "^":    
                             operand2 = expArr[index+1]
@@ -1055,7 +1058,6 @@ class Ui_calculator(object):
                             indexesToRemove.insert(0,index-1)
                             indexesToRemove.insert(0,index)
 
-            print(expArr)##############################################debug
             expArr = self.removeFromArr(expArr, indexesToRemove)
             
             #process operations with 3nd highest priority
@@ -1091,6 +1093,7 @@ class Ui_calculator(object):
                         indexesToRemove.insert(0,index)
 
             expArr = self.removeFromArr(expArr, indexesToRemove)
+            print(expArr)##############################################debug
                 
             
             self.res = eval(expr)
