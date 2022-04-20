@@ -1003,7 +1003,7 @@ class Ui_calculator(object):
                     expArr[index] = expr
                     if not len(expArr)-index-1 == 0 and not re.match(r'(\+|-|x|\*|/|!|\^)',expArr[index+1]):
                         expArr.insert(index+1,"x")
-                    if index > 0 and not re.fullmatch(r'(\+|-|x|\*|/|!|\^)',expArr[index-1]):
+                    if index > 0 and not re.fullmatch(r'(\+|-|x|\*|/|!|\^|ln)',expArr[index-1]):
                         expArr.insert(index,"x")
 
             for index in indexesToRemove:
