@@ -954,7 +954,7 @@ class Ui_calculator(object):
 
     #splits expression by operators and special characters
     def splitExprToArr(self, expression):
-            expArr = re.split(r'(\+|-|x|/|!|\^|√|π|ln)', expression)
+            expArr = re.split(r'(\+|-|x|\*|/|!|\^|√|π|ln)', expression)
             
             for i in expArr:
                 if i == '':
@@ -992,19 +992,28 @@ class Ui_calculator(object):
             indexesToRemove = []
 
             #process operations with highest priority
-            for index,i in enumerate(expArr):   
+            for index,i in enumerate(expArr):  
+                if i == "!":
+                    expr = 'calcLib.fac('+expArr[index-1]+')'
+                    expArr[index] = expr
+                    indexesToRemove.insert(0,index-1) 
+
                 if i == "π":
                     expr = 'calcLib.pi()'
                     expArr[index] = expr
-                    if not len(expArr)-index-1 == 0 and not re.match(r'(\+|-|x|/|!|\^)',expArr[index+1]):
+                    if not len(expArr)-index-1 == 0 and not re.match(r'(\+|-|x|\*|/|!|\^)',expArr[index+1]):
                         expArr.insert(index+1,"x")
-                    if index > 0 and not re.fullmatch(r'(\+|-|x|/|!|\^)',expArr[index-1]):
+                    if index > 0 and not re.fullmatch(r'(\+|-|x|\*|/|!|\^)',expArr[index-1]):
                         expArr.insert(index,"x")
 
+            for index in indexesToRemove:
+                expArr.pop(int(index))
+            indexesToRemove.clear()
             print(expArr)##############################################debug
+
             #process operations with 2nd highest priority
             for index,i in enumerate(expArr):
-                for opearation in ["!","^","√","ln"]:    
+                for opearation in ["^","√","ln"]:    
                     if i == opearation:
 
                         if i == "ln":
@@ -1012,18 +1021,13 @@ class Ui_calculator(object):
                             expr = 'calcLib.ln('+operand2+')'
                             expArr[index+1] = expr
                             indexesToRemove.insert(0,index)
-                            if index > 0 and not re.match(r'(\+|-|x|/|!|\^)',expArr[index-1]):
+                            if index > 0 and not re.match(r'(\+|-|x|\*|/|!|\^)',expArr[index-1]):
                                 expArr.insert(index+1,"x")
                             break
 
                         operand = expArr[index-1]
 
-                        if i == "!":
-                            expr = 'calcLib.fac('+operand+')'
-                            expArr[index] = expr
-                            indexesToRemove.insert(0,index-1)
-
-                        elif i == "^":    
+                        if i == "^":    
                             operand2 = expArr[index+1]
                             expr = 'calcLib.pwr('+operand+','+operand2+')'
                             expArr[index+1] = expr
