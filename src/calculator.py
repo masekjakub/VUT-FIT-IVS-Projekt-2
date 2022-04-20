@@ -967,7 +967,7 @@ class Ui_calculator(object):
                     expArr.insert(0,"0")
 
                 #if char index-1 is x|/|^|ln and index is -|+, connect index to number at index+1
-                elif (i == "-" or i == "+") and re.fullmatch(r'(x|/|^|ln)',expArr[index-1]):
+                elif (i == "-" or i == "+") and re.fullmatch(r'(x|/|\^|ln)',expArr[index-1]):
                     expArr[index] = str(expArr[index]) + str(expArr.pop(index+1))
 
                 #if operator x|*|/|+|- is ahead of root or power, adds default value (2) ahead of operator √|^
