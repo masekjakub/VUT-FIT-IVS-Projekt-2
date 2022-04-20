@@ -10,6 +10,8 @@
  Created by: PyQt5 UI code generator 5.15.6
 """
 
+from inspect import Traceback
+from traceback import TracebackException
 from PyQt5 import QtCore, QtGui, QtWidgets
 import re
 import calcLib
@@ -933,13 +935,14 @@ class Ui_calculator(object):
     #delete one character before cursor positioin
     def backspace(self):
         curText = self.lineInput.text()
-        if len(curText) == 0:
+        cursorIndex = self.lineInput.cursorPosition()-1
+        if cursorIndex == -1:
+            self.lineInput.setFocus()
             return
 
-        cursorPos = self.lineInput.cursorPosition()-1
-        self.lineInput.setText(curText[0 : cursorPos : ] + curText[cursorPos + 1 : :])
+        self.lineInput.setText(curText[0 : cursorIndex : ] + curText[cursorIndex + 1 : :])
         self.lineInput.setFocus()
-        self.lineInput.setCursorPosition(cursorPos)
+        self.lineInput.setCursorPosition(cursorIndex)
 
     #adds previous result to input line
     def ansToInput(self):
@@ -967,7 +970,7 @@ class Ui_calculator(object):
                     expArr.insert(0,"0")
 
                 #if char index-1 is x|/|^|ln and index is -|+, connect index to number at index+1
-                elif (i == "-" or i == "+") and re.fullmatch(r'(x|/|\^|ln)',expArr[index-1]):
+                elif (i == "-" or i == "+") and re.fullmatch(r'(x|/|\^|ln|√)',expArr[index-1]):
                     expArr[index] = str(expArr[index]) + str(expArr.pop(index+1))
 
                 #if operator x|*|/|+|- is ahead of root or power, adds default value (2) ahead of operator √|^
@@ -984,12 +987,16 @@ class Ui_calculator(object):
         try:
             expression = self.lineInput.text()
             expArr = self.splitExprToArr(expression)
+            expr = ""
+            indexesToRemove = []
+
             if len(expArr) == 0:
                 self.lineInput.setFocus()
                 return
 
-            expr = ""
-            indexesToRemove = []
+            if len(expArr) == 1:
+                expr = expArr[0]    
+
 
             #process operations with highest priority
             for index,i in enumerate(expArr):  
@@ -1009,7 +1016,6 @@ class Ui_calculator(object):
             for index in indexesToRemove:
                 expArr.pop(int(index))
             indexesToRemove.clear()
-            print(expArr)##############################################debug
 
             #process operations with 2nd highest priority
             for index,i in enumerate(expArr):
@@ -1082,14 +1088,19 @@ class Ui_calculator(object):
             indexesToRemove.clear()
                 
 
-            print(expArr)##############################################debug
             print(expr)##############################################debug
-            self.res = eval(expr)  
-        except:
-            #print(expArr)######################################################################################debug
-            self.res="Wrong input!"
+            self.res = eval(expr)
+            self.resString = expression + '        =       ' + str(self.res)
+        except TypeError as e: 
+            self.resString=repr(e)
 
-        self.textDisplay.append(str(expression) + '        =       ' + str(self.res))
+        except ZeroDivisionError as e:
+            self.resString = "Division by zero!"
+
+        except Exception as e:
+            self.resString = "Wrong syntax!"
+
+        self.textDisplay.append(self.resString)
         self.textDisplay.ensureCursorVisible()
         self.lineInput.setFocus()
 
