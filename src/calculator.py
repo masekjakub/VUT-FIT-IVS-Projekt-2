@@ -176,6 +176,8 @@ class Ui_calculator(object):
 
         self.textDisplay.append(self.resString)
         self.textDisplay.ensureCursorVisible()
+
+        self.lineInput.setText(str(self.res))
         self.lineInput.setFocus()
 
     def processTwoOperands(self, expArr, operation, operand1, operand2):
