@@ -870,7 +870,7 @@ def retranslateUi(self, calculator):
     _translate = QtCore.QCoreApplication.translate
     calculator.setWindowTitle(_translate("calculator", "Calculator"))
     self.Num7.setText(_translate("calculator", "7"))
-    self.MultiplyBtn.setText(_translate("calculator", "×"))
+    self.MultiplyBtn.setText(_translate("calculator", "x"))
     self.Num9.setText(_translate("calculator", "9"))
     self.Num4.setText(_translate("calculator", "4"))
     self.Num6.setText(_translate("calculator", "6"))
