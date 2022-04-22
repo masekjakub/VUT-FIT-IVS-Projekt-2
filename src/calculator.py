@@ -163,6 +163,9 @@ class Ui_calculator(object):
             
             print(expArr)
             self.res = eval(expArr[0])
+            self.res = (f'{self.res:.15f}')
+            self.res = self.res.rstrip('0')
+            self.res = self.res.rstrip('.')
             self.resString = expression + '        =       ' + str(self.res)
 
         except TypeError as e: 
