@@ -10,8 +10,6 @@
  Created by: PyQt5 UI code generator 5.15.6
 """
 
-from inspect import Traceback
-from traceback import TracebackException
 from PyQt5 import QtCore, QtGui, QtWidgets
 import re
 import calcLib
@@ -969,19 +967,16 @@ class Ui_calculator(object):
                 if (i == "√" or i == "^") and (index == 0 or re.fullmatch(r'(x|\*|/|\+|-)',expArr[index-1])):
                     expArr.insert(index,"2")
 
-                #if first char is +|-|x|*|/ adds 0 ahead of expression
-                elif re.fullmatch(r'(\+|-|x|\*|/)',expArr[index]) and index == 0:
-                    expArr.insert(0,"0")
-
-                #if char index-1 is x|/|^|ln and index is -|+, connect index to number at index+1
-                elif (i == "-" or i == "+") and (index == 0 or re.fullmatch(r'(x|/|\^|ln|√|!)',expArr[index-1])):
-                    if (not re.fullmatch(r'(\+|-|x|\*|/|\^|√|π|ln)',expArr[index+1])):
+                #if char index-1 is x|/|^|ln and index is -|+ and index+1 is number, connect index to index+1
+                if (i == "-" or i == "+") and (index == 0 or re.fullmatch(r'(x|/|\^|ln|√)',expArr[index-1])):
+                    if expArr[index+1].isnumeric():
                         expArr[index] = str(expArr[index]) + str(expArr.pop(index+1))
 
-                #FIX ME
-                elif (i == "!") and (index == 0 or re.fullmatch(r'(x|\*|/|\+|-)',expArr[index-1])):
-                    expArr.pop(index)
-                    
+                if i == "π" and not len(expArr)-index-1 == 0 and not re.match(r'(\+|-|x|\*|/|!|\^)',expArr[index+1]):
+                    expArr.insert(index+1,"x")
+
+                if i == "π" and index > 0 and not re.fullmatch(r'(\+|-|x|\*|/|!|\^|√|π|ln)',expArr[index-1]):
+                        expArr.insert(index,"x")
             return expArr
 
     def removeFromArr(self,arr, indexes):
@@ -990,114 +985,96 @@ class Ui_calculator(object):
         indexes.clear()
         return arr
 
+    def processLvl1(self, expArr):
+        for index,i in enumerate(expArr):  
+            if i == "!":
+                expArr = self.processOneOperand(expArr, index, "fac", index-1)
+                self.indexesToRemove.insert(0,index-1) 
+
+            if i == "π":
+                expArr = self.processNoOperand(expArr, index, "pi")
+        return expArr
+
+    def processLvl2(self, expArr):
+        for index,i in enumerate(expArr):   
+            if i == "ln":
+                expArr = self.processOneOperand(expArr, index, "ln", index+1)
+                self.indexesToRemove.insert(0,index)
+
+            if i == "^":  
+                if re.fullmatch(r'(\+|-|x|\*|/|!|\^|√|π|ln)',expArr[index+1]):
+                    break  
+                expArr = self.processTwoOperands(expArr, "pwr", index-1,index+1)
+                self.indexesToRemove.insert(0,index-1)
+                self.indexesToRemove.insert(0,index)
+
+            if i == "√":
+                if re.fullmatch(r'(\+|-|x|\*|/|!|\^|√|π|ln)',expArr[index+1]):
+                    break
+                expArr = self.processTwoOperands(expArr, "root", index+1,index-1)
+                self.indexesToRemove.insert(0,index-1)
+                self.indexesToRemove.insert(0,index)
+        return expArr
+
+    def processLvl3(self, expArr):
+        for index,i in enumerate(expArr):
+            if i == "x" or i == "*":
+                expArr = self.processTwoOperands(expArr, "mul", index-1,index+1)
+                self.indexesToRemove.insert(0,index-1)
+                self.indexesToRemove.insert(0,index)
+            if i == "/":
+                expArr = self.processTwoOperands(expArr, "div", index-1,index+1)
+                self.indexesToRemove.insert(0,index-1)
+                self.indexesToRemove.insert(0,index)
+        return expArr
+
+    def processLvl4(self, expArr):
+        for index,i in enumerate(expArr):
+            if i == "+":
+                expArr = self.processTwoOperands(expArr, "add", index-1,index+1)
+                self.indexesToRemove.insert(0,index-1)
+                self.indexesToRemove.insert(0,index)
+            if i == "-":
+                expArr = self.processTwoOperands(expArr, "sub", index-1,index+1)
+                self.indexesToRemove.insert(0,index-1)
+                self.indexesToRemove.insert(0,index)
+        return expArr
+
     def calculate(self,key):
         try:
             expression = self.lineInput.text()
             expArr = self.splitExprToArr(expression)
-            expr = ""
-            indexesToRemove = []
+            self.indexesToRemove = []
 
+            #empty input
             if len(expArr) == 0:
                 self.lineInput.setFocus()
                 return
-
-            if len(expArr) == 1:
-                expr = expArr[0]    
-
-
+    
             #process operations with highest priority
-            for index,i in enumerate(expArr):  
-                if i == "!":
-                    expr = 'calcLib.fac('+expArr[index-1]+')'
-                    expArr[index] = expr
-                    indexesToRemove.insert(0,index-1) 
-
-                if i == "π":
-                    expr = 'calcLib.pi()'
-                    expArr[index] = expr
-                    if not len(expArr)-index-1 == 0 and not re.match(r'(\+|-|x|\*|/|!|\^)',expArr[index+1]):
-                        expArr.insert(index+1,"x")
-                    if index > 0 and not re.fullmatch(r'(\+|-|x|\*|/|!|\^|√|π|ln)',expArr[index-1]):
-                        expArr.insert(index,"x")
-
-            expArr = self.removeFromArr(expArr, indexesToRemove)
+            expArr = self.processLvl1(expArr)
+            expArr = self.removeFromArr(expArr, self.indexesToRemove)
 
             #process operations with 2nd highest priority
-            for index,i in enumerate(expArr):
-                for opearation in ["^","√","ln"]:    
-                    if i == opearation:
-
-
-                        if i == "ln":
-                            operand2 = expArr[index+1]
-                            expr = 'calcLib.ln('+operand2+')'
-                            expArr[index+1] = expr
-                            indexesToRemove.insert(0,index)
-                            if index > 0 and not re.match(r'(\+|-|x|\*|/|!|\^)',expArr[index-1]):
-                                expArr.insert(index+1,"x")
-                            break
-
-                        operand = expArr[index-1]
-                        
-                        
-                        if re.fullmatch(r'(\+|-|x|\*|/|!|\^|√|π|ln)',expArr[index+1]):
-                            print("er")
-                            break
-
-                        if i == "^":    
-                            operand2 = expArr[index+1]
-                            expr = 'calcLib.pwr('+operand+','+operand2+')'
-                            expArr[index+1] = expr
-                            indexesToRemove.insert(0,index-1)
-                            indexesToRemove.insert(0,index)
-
-                        elif i == "√":
-                            operand2 = expArr[index+1]
-                            expr = 'calcLib.root('+operand2+','+operand+')'
-                            expArr[index+1] = expr
-                            indexesToRemove.insert(0,index-1)
-                            indexesToRemove.insert(0,index)
-
-            expArr = self.removeFromArr(expArr, indexesToRemove)
+            expArr = self.processLvl2(expArr)
+            expArr = self.removeFromArr(expArr, self.indexesToRemove)
             
             #process operations with 3nd highest priority
-            for index,i in enumerate(expArr):
-                for operation in ["x","*","/"]:
-                    if i == operation:
-                        operand = expArr[index-1]
-                        operand2 = expArr[index+1]
-                        if i == "x" or i == "*":
-                            expr = 'calcLib.mul('+operand+','+operand2+')'
-                            expArr[index+1] = expr
-                        else:
-                            expr = 'calcLib.div('+operand+','+operand2+')'
-                            expArr[index+1] = expr
-                        indexesToRemove.insert(0,index-1)
-                        indexesToRemove.insert(0,index)
-
-            expArr = self.removeFromArr(expArr, indexesToRemove)
+            expArr = self.processLvl3(expArr)
+            expArr = self.removeFromArr(expArr, self.indexesToRemove)
 
             #process operations with 4rd highest priority
-            for index,i in enumerate(expArr):
-                for operation in ["+","-"]:
-                    if i == operation:
-                        operand = expArr[index-1]
-                        operand2 = expArr[index+1]
-                        if i == "+":
-                            expr = 'calcLib.add('+operand+','+operand2+')'
-                            expArr[index+1] = expr
-                        else:
-                            expr = 'calcLib.sub('+operand+','+operand2+')'
-                            expArr[index+1] = expr
-                        indexesToRemove.insert(0,index-1)
-                        indexesToRemove.insert(0,index)
-
-            expArr = self.removeFromArr(expArr, indexesToRemove)
-            print(expArr)##############################################debug
-                
+            expArr = self.processLvl4(expArr)
+            expArr = self.removeFromArr(expArr, self.indexesToRemove)
             
-            self.res = eval(expr)
+            #more then 1 node in array means something is not processed
+            if len(expArr) != 1:
+                raise SyntaxError()
+            
+            print(expArr)
+            self.res = eval(expArr[0])
             self.resString = expression + '        =       ' + str(self.res)
+
         except TypeError as e: 
             self.resString=repr(e)
 
@@ -1110,6 +1087,23 @@ class Ui_calculator(object):
         self.textDisplay.append(self.resString)
         self.textDisplay.ensureCursorVisible()
         self.lineInput.setFocus()
+
+    def processTwoOperands(self, expArr, operation, operand1, operand2):
+        expr = 'calcLib.'+operation+'('+expArr[operand1]+','+expArr[operand2]+')'
+        lastIndex = max(operand1, operand2)
+        expArr[lastIndex] = expr
+        return expArr
+
+    def processOneOperand(self, expArr, operationIndex, operation, operand):
+        expr = 'calcLib.'+operation+'('+expArr[operand]+')'
+        lastIndex = max(operand, operationIndex)
+        expArr[lastIndex] = expr
+        return expArr
+
+    def processNoOperand(self, expArr, operationIndex, operation):
+        expr = 'calcLib.'+operation+'()'
+        expArr[operationIndex] = expr
+        return expArr
 
 if __name__ == "__main__":
     import sys
