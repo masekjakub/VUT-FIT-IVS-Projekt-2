@@ -177,11 +177,12 @@ class Ui_calculator(object):
         except Exception as e:
             self.resString = "Wrong syntax!"
 
+        else:
+            self.lineInput.setText(str(self.res))
+            self.lineInput.setFocus()
+
         self.textDisplay.append(self.resString)
         self.textDisplay.ensureCursorVisible()
-
-        self.lineInput.setText(str(self.res))
-        self.lineInput.setFocus()
 
     def processTwoOperands(self, expArr, operation, operand1, operand2):
         expr = 'calcLib.'+operation+'('+expArr[operand1]+','+expArr[operand2]+')'
