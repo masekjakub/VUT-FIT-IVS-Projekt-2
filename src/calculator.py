@@ -16,7 +16,7 @@ from PyQt5 import QtWidgets
 import re
 import calcLib
 
-## Main class of calculator
+## Main class of calculator, style methods are imported from ui.py
 class Ui_calculator(object):
     #import ui classes
     from ui import setupUi, retranslateUi
