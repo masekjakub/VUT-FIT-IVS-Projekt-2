@@ -1,6 +1,21 @@
+"""
+Project name: VUT FIT IVS 2. Project
+File: profiling.py
+Date: 22.4.2022
+Authors: Martin Zelenák xzelen27
+Description: Script calculating standard deviation. Script is used for profiling
+"""
+
+##
+# @file profiling.py
+# @brief Script calculating standard deviation used for profiling
+# @author Martin Zelenák
+
 import calcLib
 from sys import stdin
 
+## Main function calculating standard deviation.
+# @brief Calculates standard deviation from stdin and prints the result to stdout
 def main():
     ####################
     #### READ INPUT ####
@@ -40,8 +55,7 @@ def main():
     #################
     deviation=0
 
-    #sum Xi^2
-    for x in numbers:
+    for x in numbers:   #sum Xi^2
         deviation+=calcLib.pwr(x,2)
 
     deviation=calcLib.sub(deviation , calcLib.mul( N , calcLib.pwr(avgXi,2) ) )
