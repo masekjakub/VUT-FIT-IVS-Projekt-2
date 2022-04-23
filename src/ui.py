@@ -1,3 +1,16 @@
+"""
+Project name: VUT FIT IVS 2. Project
+File: ui.py
+Date: 23.4.2022
+Authors: Jakub Mašek xmasek19
+Description: File with style methods for calculator.py
+"""
+
+##
+# @file ui.py
+# @brief File with style methods for calculator.py
+# @author Jakub Mašek xmasek19
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 import keyboard
 
