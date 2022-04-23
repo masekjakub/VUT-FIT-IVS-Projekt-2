@@ -10,7 +10,7 @@ Description: Main file of calculator app
 ##
 # @file calculator.py
 # @brief Main file of calculator app
-# @author Jakub Mašek
+# @author Jakub Mašek xmasek19
 
 from PyQt5 import QtWidgets
 import re
