@@ -6,3 +6,5 @@ src/__pycache__/
 #Martin's scripts
 src/fillData
 src/profile
+#Doxygen folder
+*/html/
