@@ -145,6 +145,9 @@ class Ui_calculator(object):
             expArr = self.processLvl1(expArr)
             expArr = self.removeFromArr(expArr, self.indexesToRemove)
 
+            #if first character is + or -, insert 0 ahead
+            if expArr[0]  == "-" or expArr[0]  == "+":
+                expArr.insert(0,"0")
             #process operations with 2nd highest priority
             expArr = self.processLvl2(expArr)
             expArr = self.removeFromArr(expArr, self.indexesToRemove)
