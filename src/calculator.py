@@ -16,6 +16,7 @@ import re
 import calcLib
 from ui import Ui_calculator
 import keyboard
+import os
 
 
 ## Function that adds symbol to input line.
@@ -265,6 +266,10 @@ def processNoOperand(expArr, operationIndex, operation):
     expArr[operationIndex] = expr
     return expArr
 
+## Opens file with help
+def showHelp():
+    os.startfile("help.pdf")
+     
 ## Function attaches buttons and keys to proper functions
 def attachButtons():
     ui.Num0.clicked.connect(lambda: (addSymbolToInput(0)))
@@ -292,6 +297,7 @@ def attachButtons():
     ui.BackspaceBtn.clicked.connect(backspace)
     ui.EqualBtn.clicked.connect(calculate)
     ui.AnsBtn.clicked.connect(ansToInput)
+    ui.helpBtn.clicked.connect(showHelp)
     keyboard.on_press_key("Enter", calculate)
 
 ## Main function
@@ -303,5 +309,6 @@ if __name__ == "__main__":
     ui = Ui_calculator()
     ui.setupUi(calculator)
     attachButtons()
+    ui.res=""
     calculator.show()
     sys.exit(app.exec_())
