@@ -15,7 +15,6 @@ from PyQt5 import QtWidgets
 import re
 import calcLib
 from ui import Ui_calculator
-import ui
 import keyboard
 
 
