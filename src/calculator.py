@@ -35,7 +35,7 @@ def clear():
     ui.lineInput.setText("")
     ui.lineInput.setFocus()
 
-## Function deletes character ahead of cursor position
+## Function deletes character ahead of cursor position.
 def backspace():
     curText = ui.lineInput.text()
     cursorIndex = ui.lineInput.cursorPosition()-1
@@ -89,7 +89,7 @@ def splitExprToArr(expression):
                     expArr.insert(index,"x")
         return expArr
 
-## Function removes values on specific indexes from array
+## Function removes values on specific indexes from array.
 # @param arr Array
 # @param indexes Indexes of array to be removed
 # @return Returns array with removed indexes
@@ -99,7 +99,7 @@ def removeFromArr(arr, indexes):
     indexes.clear()
     return arr
 
-## Function processes operation with highest priority
+## Function processes operation with highest priority.
 # @param expArr Array to be processed
 # @return Returns array with processed operations
 def processPriority1(expArr):
@@ -112,7 +112,7 @@ def processPriority1(expArr):
             expArr = processNoOperand(expArr, index, "pi")
     return expArr
 
-## Function processes operation with 2nd highest priority
+## Function processes operation with 2nd highest priority.
 # @param expArr Array to be processed
 # @return Returns array with processed operations
 def processPriority2(expArr):
@@ -136,7 +136,7 @@ def processPriority2(expArr):
             indexesToRemove.insert(0,index)
     return expArr
 
-## Function processes operation with 3rd highest priority
+## Function processes operation with 3rd highest priority.
 # @param expArr Array to be processed
 # @return Returns array with processed operations
 def processPriority3(expArr):
@@ -151,7 +151,7 @@ def processPriority3(expArr):
             indexesToRemove.insert(0,index)
     return expArr
 
-## Function processes operation with 4th highest priority
+## Function processes operation with 4th highest priority.
 # @param expArr Array to be processed
 # @return Returns array with processed operations
 def processPriority4(expArr):
@@ -166,7 +166,7 @@ def processPriority4(expArr):
             indexesToRemove.insert(0,index)
     return expArr
 
-## Function processes whole expression
+## Function processes whole expression.
 # @param expArr Array to be processed
 # @return Returns array with processed operations
 def calculate(key):
@@ -182,27 +182,27 @@ def calculate(key):
             ui.lineInput.setFocus()
             return
 
-        #process operations with highest priority
+        #process operations with highest priority.
         expArr = processPriority1(expArr)
         expArr = removeFromArr(expArr, indexesToRemove)
 
-        #if first character is + or -, insert 0 ahead
+        #if first character is + or -, insert 0 ahead.
         if expArr[0]  == "-" or expArr[0]  == "+":
             expArr.insert(0,"0")
 
-        #process operations with 2nd highest priority
+        #process operations with 2nd highest priority.
         expArr = processPriority2(expArr)
         expArr = removeFromArr(expArr, indexesToRemove)
         
-        #process operations with 3nd highest priority
+        #process operations with 3nd highest priority.
         expArr = processPriority3(expArr)
         expArr = removeFromArr(expArr, indexesToRemove)
 
-        #process operations with 4rd highest priority
+        #process operations with 4rd highest priority.
         expArr = processPriority4(expArr)
         expArr = removeFromArr(expArr, indexesToRemove)
 
-        #more then 1 node in array means something is not processed
+        #more then 1 node in array means something is not processed.
         if len(expArr) != 1:
             raise SyntaxError()
         
@@ -231,7 +231,7 @@ def calculate(key):
     ui.textDisplay.append(resString)
     ui.textDisplay.ensureCursorVisible()
 
-## Function processes operation with 2 operands, inserts result to the greatest index used
+## Function processes operation with 2 operands, inserts result to the greatest index used.
 # @param expArr Array to be processed
 # @param operation Name of operation to be precessed
 # @param operand1 Index of first operand
@@ -243,7 +243,7 @@ def processTwoOperands(expArr, operation, operand1, operand2):
     expArr[lastIndex] = expr
     return expArr
 
-## Function processes operation with 1 operand, inserts result to the greatest index used
+## Function processes operation with 1 operand, inserts result to the greatest index used.
 # @param expArr Array to be processed
 # @param operationIndex Index of operation
 # @param operation Name of operation to be precessed
@@ -255,7 +255,7 @@ def processOneOperand(expArr, operationIndex, operation, operand):
     expArr[lastIndex] = expr
     return expArr
 
-## Function processes operation with no operand, inserts result to the greatest index used
+## Function processes operation with no operand, inserts result to the greatest index used.
 # @param expArr Array to be processed
 # @param operationIndex Index of operation
 # @param operation Name of operation to be precessed
@@ -266,11 +266,11 @@ def processNoOperand(expArr, operationIndex, operation):
     expArr[operationIndex] = expr
     return expArr
 
-## Opens file with help
+## Opens file with help.
 def showHelp():
     os.startfile("help.pdf")
      
-## Function attaches buttons and keys to proper functions
+## Function attaches buttons and keys to proper functions.
 def attachButtons():
     ui.Num0.clicked.connect(lambda: (addSymbolToInput(0)))
     ui.Num1.clicked.connect(lambda: (addSymbolToInput(1)))
@@ -300,7 +300,7 @@ def attachButtons():
     ui.helpBtn.clicked.connect(showHelp)
     keyboard.on_press_key("Enter", calculate)
 
-## Main function
+## Main function.
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
