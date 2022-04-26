@@ -836,7 +836,7 @@ class Ui_calculator(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.PlaceholderText, brush)
         self.textDisplay.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Emoji")
+        font.setFamily("Calibri")
         font.setPointSize(15)
         font.setBold(False)
         font.setItalic(False)
@@ -844,7 +844,7 @@ class Ui_calculator(object):
         self.textDisplay.setFont(font)
         self.textDisplay.setMouseTracking(False)
         self.textDisplay.setAutoFillBackground(False)
-        self.textDisplay.setStyleSheet("font: 15pt \"Segoe UI Emoji\";\n"
+        self.textDisplay.setStyleSheet("font: 15pt \"Calibri\";\n"
 "background-color: rgb(72, 72, 72);\n"
 "color:white;\n"
 "")
@@ -937,9 +937,9 @@ class Ui_calculator(object):
         self.ClearBtn.setText(_translate("calculator", "C"))
         self.MinusBtn.setText(_translate("calculator", "-"))
         self.textDisplay.setHtml(_translate("calculator", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\"><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Segoe UI Emoji\'; font-size:15pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:\'Calibri\'; font-size:15pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.delHistoryBtn.setToolTip(_translate("calculator", "Delete history"))
         self.delHistoryBtn.setText(_translate("calculator", "DEL"))
