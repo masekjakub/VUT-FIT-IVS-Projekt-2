@@ -126,7 +126,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Calculator</string>
+   <string>CubiCulator</string>
   </property>
   <property name="windowIcon">
    <iconset>
