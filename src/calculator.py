@@ -49,7 +49,8 @@ def backspace():
 ## Function that adds previous result to input line.
 def ansToInput():
     curText = ui.lineInput.text()
-    ui.lineInput.setText(curText + str(res))
+    print(ui.res)
+    ui.lineInput.setText(curText + str(ui.res))
     ui.lineInput.setFocus()
 
 ## Function that clears history.
@@ -206,11 +207,11 @@ def calculate(key):
         
         print(expArr)#debug REMOVE
         #eval whole expression and round result
-        res = eval(expArr[0])
-        res = (f'{res:.15f}')
-        res = res.rstrip('0')
-        res = res.rstrip('.')
-        resString = expression + '        =       ' + str(res)
+        ui.res = eval(expArr[0])
+        ui.res = (f'{ui.res:.15f}')
+        ui.res = ui.res.rstrip('0')
+        ui.res = ui.res.rstrip('.')
+        resString = expression + '        =       ' + str(ui.res)
 
     except TypeError as e: 
         resString=repr(e)
@@ -222,7 +223,7 @@ def calculate(key):
         resString = "Wrong syntax!"
 
     else:
-        ui.lineInput.setText(str(res))
+        ui.lineInput.setText(str(ui.res))
         ui.lineInput.setFocus()
 
     #add result to history and ensure history text label is scrolled down
@@ -299,7 +300,6 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     calculator = QtWidgets.QMainWindow()
     indexesToRemove = [] #array of indexes to be removed
-    res = "" #result string
     ui = Ui_calculator()
     ui.setupUi(calculator)
     attachButtons()
