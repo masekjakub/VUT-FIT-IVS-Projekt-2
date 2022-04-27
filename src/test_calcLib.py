@@ -3,6 +3,7 @@ Project name: VUT FIT IVS 2. Project
 File: test_calcLib.py
 Date: 22.4.2022
 Authors: Martin Zelenák xzelen27
+         Filip Polomski xpolom00
 Description: Test suit for testing the calcLib library
 """
 
