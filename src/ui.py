@@ -27,7 +27,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 # @brief Class with style methods for calculator.py
 # @author Jakub Mašek xmasek19
 class Ui_calculator(object):
-
+    res=""
+    resIndex = 0
     ## 
     # @brief setup of graphic interface
     def setupUi(self, calculator):
