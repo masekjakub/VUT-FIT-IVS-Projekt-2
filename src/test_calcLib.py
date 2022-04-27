@@ -9,7 +9,7 @@ Description: Test suit for testing the calcLib library
 ##
 # @file test_calcLib.py
 # @brief Test suit for testing the calcLib library
-# @author Martin Zelenák
+# @author Martin Zelenák and Filip Polomski
 
 """
 This file is part of CubiCulator.
