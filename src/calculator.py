@@ -307,11 +307,15 @@ def attachButtons():
     ui.ClearBtn.clicked.connect(clear)
     ui.BackspaceBtn.clicked.connect(backspace)
     ui.EqualBtn.clicked.connect(calculate)
-    ui.AnsBtn.clicked.connect(lambda: ansToInput)
+    ui.AnsBtn.clicked.connect(ansToInputBtn)
     ui.helpBtn.clicked.connect(showHelp)
     keyboard.add_hotkey('Enter', calculate, args=())
     keyboard.on_press_key("down", historyDown)
     keyboard.on_press_key('up', historyUp)
+
+def ansToInputBtn():
+    ui.resIndex = 1
+    ansToInput()
 
 ## Function scrolls up between previous results and prints it to the input.
 # @param key Pressed key
