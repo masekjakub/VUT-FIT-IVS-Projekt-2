@@ -25,6 +25,8 @@ from ui import Ui_calculator
 import keyboard
 import os
 
+indexesToRemove = [] #array of indexes to be removed
+resList=[""]
 
 ## Function that adds symbol to input line.
 # @param symbol Symbol to be added
@@ -57,8 +59,7 @@ def backspace():
 ## Function that adds previous result to input line.
 def ansToInput():
     curText = ui.lineInput.text()
-    print(ui.res)
-    ui.lineInput.setText(curText + str(ui.res))
+    ui.lineInput.setText(curText + str(resList[ui.resIndex]))
     ui.lineInput.setFocus()
 
 ## Function that clears history.
@@ -225,6 +226,9 @@ def calculate():
     except ZeroDivisionError as e:
         resString = "Division by zero!"
 
+    except OverflowError as e:
+        resString = "Too large number!"
+
     except Exception as e:
         resString = "Wrong syntax!"
 
@@ -233,6 +237,8 @@ def calculate():
         ui.lineInput.setFocus()
 
     #add result to history and ensure history text label is scrolled down
+    ui.resIndex = 0
+    resList.insert(1,ui.res)
     ui.textDisplay.append(resString)
     ui.textDisplay.ensureCursorVisible()
 
@@ -301,21 +307,46 @@ def attachButtons():
     ui.ClearBtn.clicked.connect(clear)
     ui.BackspaceBtn.clicked.connect(backspace)
     ui.EqualBtn.clicked.connect(calculate)
-    ui.AnsBtn.clicked.connect(ansToInput)
+    ui.AnsBtn.clicked.connect(lambda: ansToInput)
     ui.helpBtn.clicked.connect(showHelp)
     keyboard.add_hotkey('Enter', calculate, args=())
-    
+    keyboard.on_press_key("down", historyDown)
+    keyboard.on_press_key('up', historyUp)
+
+## Function scrolls up between previous results and prints it to the input.
+# @param key Pressed key
+def historyUp(key):
+    if  str(key) == "KeyboardEvent(8 down)":return
+    maxIndex = len(resList)-1
+    ui.resIndex=ui.resIndex+1
+    if ui.resIndex > maxIndex:
+        ui.resIndex = 0
+
+    ui.lineInput.clear()
+    ansToInput()
+
+## Function scrolls down between previous results and prints it to the input.
+# @param key Pressed key
+def historyDown(key):
+    if str(key) == "KeyboardEvent(2 down)":return
+    maxIndex = len(resList)-1
+    ui.resIndex=ui.resIndex-1
+    if ui.resIndex < 0:
+        ui.resIndex = maxIndex
+
+    ui.lineInput.clear()
+    ansToInput()
+
 ## Main function.
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     app.instance().thread()
     calculator = QtWidgets.QMainWindow()
-    indexesToRemove = [] #array of indexes to be removed
     ui = Ui_calculator()
     ui.setupUi(calculator)
+    ui.resIndex=0
     attachButtons()
     calculator.show()
-    ui.res=""
     ui.lineInput.setFocus()
     sys.exit(app.exec_())
