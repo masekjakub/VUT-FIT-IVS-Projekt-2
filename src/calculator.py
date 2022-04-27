@@ -63,7 +63,7 @@ def delHistory():
 # @param expression Math expression to be splitted
 # @return Returns splitted expression as array
 def splitExprToArr(expression):
-        expArr = re.split(r'(\+|-|x|\*|/|!|\^|√|π|ln)', expression)
+        expArr = re.split(r'(\+|-|x|\*|/|!|\^|√|π|pi|ln)', expression)
         
         for i in expArr:
             if i == '':
@@ -81,11 +81,11 @@ def splitExprToArr(expression):
                     expArr[index] = str(expArr[index]) + str(expArr.pop(index+1))
 
             #if number is next to pi(on right side), adds mul between it
-            if i == "π" and not len(expArr)-index-1 == 0 and not re.match(r'(\+|-|x|\*|/|!|\^)',expArr[index+1]):
+            if (i == "π" or i == "pi") and not len(expArr)-index-1 == 0 and not re.match(r'(\+|-|x|\*|/|!|\^)',expArr[index+1]):
                 expArr.insert(index+1,"x")
 
             #if number is next to pi(on left side), adds mul between it
-            if i == "π" and index > 0 and not re.fullmatch(r'(\+|-|x|\*|/|!|\^|√|π|ln)',expArr[index-1]):
+            if (i == "π" or i == "pi") and index > 0 and not re.fullmatch(r'(\+|-|x|\*|/|!|\^|√|π|pi|ln)',expArr[index-1]):
                     expArr.insert(index,"x")
         return expArr
 
@@ -108,7 +108,7 @@ def processPriority1(expArr):
             expArr = processOneOperand(expArr, index, "fac", index-1)
             indexesToRemove.insert(0,index-1) 
 
-        if i == "π":
+        if i == "π" or i == "pi":
             expArr = processNoOperand(expArr, index, "pi")
     return expArr
 
@@ -122,14 +122,14 @@ def processPriority2(expArr):
             indexesToRemove.insert(0,index)
 
         if i == "^":  
-            if re.fullmatch(r'(\+|-|x|\*|/|!|\^|√|π|ln)',expArr[index+1]):
+            if re.fullmatch(r'(\+|-|x|\*|/|!|\^|√|π|pi|ln)',expArr[index+1]):
                 break  
             expArr = processTwoOperands(expArr, "pwr", index-1,index+1)
             indexesToRemove.insert(0,index-1)
             indexesToRemove.insert(0,index)
 
         if i == "√":
-            if re.fullmatch(r'(\+|-|x|\*|/|!|\^|√|π|ln)',expArr[index+1]):
+            if re.fullmatch(r'(\+|-|x|\*|/|!|\^|√|π | pi|ln)',expArr[index+1]):
                 break
             expArr = processTwoOperands(expArr, "root", index+1,index-1)
             indexesToRemove.insert(0,index-1)
@@ -169,10 +169,9 @@ def processPriority4(expArr):
 ## Function processes whole expression.
 # @param expArr Array to be processed
 # @return Returns array with processed operations
-def calculate(key):
+def calculate():
     ## Stores last result
     res=""
-    ## Stores indexes of array to be deleted
     try:
         expression = ui.lineInput.text()
         expArr = splitExprToArr(expression)
@@ -206,13 +205,12 @@ def calculate(key):
         if len(expArr) != 1:
             raise SyntaxError()
         
-        print(expArr)#debug REMOVE
         #eval whole expression and round result
         ui.res = eval(expArr[0])
         ui.res = (f'{ui.res:.15f}')
         ui.res = ui.res.rstrip('0')
         ui.res = ui.res.rstrip('.')
-        resString = expression + '        =       ' + str(ui.res)
+        resString = expression + '  =   ' + str(ui.res)
 
     except TypeError as e: 
         resString=repr(e)
@@ -224,7 +222,7 @@ def calculate(key):
         resString = "Wrong syntax!"
 
     else:
-        ui.lineInput.setText(str(ui.res))
+        ui.lineInput.setText("")
         ui.lineInput.setFocus()
 
     #add result to history and ensure history text label is scrolled down
@@ -298,17 +296,19 @@ def attachButtons():
     ui.EqualBtn.clicked.connect(calculate)
     ui.AnsBtn.clicked.connect(ansToInput)
     ui.helpBtn.clicked.connect(showHelp)
-    keyboard.on_press_key("Enter", calculate)
-
+    keyboard.add_hotkey('Enter', calculate, args=())
+    
 ## Main function.
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
+    app.instance().thread()
     calculator = QtWidgets.QMainWindow()
     indexesToRemove = [] #array of indexes to be removed
     ui = Ui_calculator()
     ui.setupUi(calculator)
     attachButtons()
-    ui.res=""
     calculator.show()
+    ui.res=""
+    ui.lineInput.setFocus()
     sys.exit(app.exec_())
