@@ -27,7 +27,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 # @brief Class with style methods for calculator.py
 # @author Jakub Mašek xmasek19
 class Ui_calculator(object):
-
+    res=""
+    resIndex = 0
     ## 
     # @brief setup of graphic interface
     def setupUi(self, calculator):
@@ -76,7 +77,7 @@ class Ui_calculator(object):
         font.setPointSize(15)
         calculator.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(".\\24.png"),
+        icon.addPixmap(QtGui.QPixmap(".\\256.ico"),
                        QtGui.QIcon.Normal, QtGui.QIcon.Off)
         calculator.setWindowIcon(icon)
         calculator.setStyleSheet("background-color: rgb(72, 72, 72);")
@@ -944,7 +945,7 @@ class Ui_calculator(object):
         self.textDisplay.setFont(font)
         self.textDisplay.setMouseTracking(False)
         self.textDisplay.setAutoFillBackground(False)
-        self.textDisplay.setStyleSheet("font: 15pt \"Calibri\";\n"
+        self.textDisplay.setStyleSheet("font: 13pt \"Calibri\";\n"
                                        "background-color: rgb(72, 72, 72);\n"
                                        "color:white;\n"
                                        "")

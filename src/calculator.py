@@ -26,7 +26,7 @@ import keyboard
 import os
 
 indexesToRemove = [] #array of indexes to be removed
-resList=[""]
+resList=[""] #array with previous results
 
 ## Function that adds symbol to input line.
 # @param symbol Symbol to be added
@@ -64,6 +64,8 @@ def ansToInput():
 
 ## Function that clears history.
 def delHistory():
+    resList.clear()
+    resList.append("")
     ui.textDisplay.clear()
     ui.lineInput.setFocus()
 
@@ -179,7 +181,7 @@ def processPriority4(expArr):
 # @return Returns array with processed operations
 def calculate():
     ## Stores last result
-    res=""
+    ui.res=""
     try:
         expression = ui.lineInput.text()
         expArr = splitExprToArr(expression)
@@ -235,10 +237,10 @@ def calculate():
     else:
         ui.lineInput.setText("")
         ui.lineInput.setFocus()
+        ui.resIndex = 0
+        resList.insert(1,ui.res)
 
     #add result to history and ensure history text label is scrolled down
-    ui.resIndex = 0
-    resList.insert(1,ui.res)
     ui.textDisplay.append(resString)
     ui.textDisplay.ensureCursorVisible()
 
@@ -309,10 +311,11 @@ def attachButtons():
     ui.EqualBtn.clicked.connect(calculate)
     ui.AnsBtn.clicked.connect(ansToInputBtn)
     ui.helpBtn.clicked.connect(showHelp)
-    keyboard.add_hotkey('Enter', calculate, args=())
+    keyboard.add_hotkey('Enter', calculate)
     keyboard.on_press_key("down", historyDown)
     keyboard.on_press_key('up', historyUp)
 
+## Function prints last result to input.
 def ansToInputBtn():
     ui.resIndex = 1
     ansToInput()
@@ -320,7 +323,7 @@ def ansToInputBtn():
 ## Function scrolls up between previous results and prints it to the input.
 # @param key Pressed key
 def historyUp(key):
-    if  str(key) == "KeyboardEvent(8 down)":return
+    if str(key) == "KeyboardEvent(8 down)":return
     maxIndex = len(resList)-1
     ui.resIndex=ui.resIndex+1
     if ui.resIndex > maxIndex:
