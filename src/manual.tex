@@ -13,6 +13,7 @@
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[export]{adjustbox}
 
 \title{IVS - User manual}
 \author{EXPECT\_EQ(oznuk, false)}
@@ -20,71 +21,151 @@
 \begin{document}
 \maketitle
 
-%\begin{abstract}
-%Your abstract.
-%\end{abstract}
+\tableofcontents
+
 
 \section{Introduction}
 
-Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction Introduction.
+This manual covers the installation and introduction to functions and features of calculation software CubiCulator. CubiCulator is a desktop program, made by team EXPECT\_EQ(oznuk, false) as a second and final IVS project. It can calculate basic mathematical expressions with some added, more sophisticated functions.
+\\Thank you for choosing CubiCulator. 
 
 
 \section{Installation and uninstallation}
 Before you can start with installation you need to make sure you run Windows 10 on your device and that you have the proper user rights to install new programs on your device. 
 
 \subsection{Installation}
-To successfully install your calculator program you need to follow these steps.
+To successfully install your calculator program you need to follow these steps:
 
 \begin{enumerate}
-\item Click on the [this] button.
+\item Start by double clicking on the \textbf{[mysetup]} icon (with the left mouse button).
   \begin{figure}[H]
     \centering
-    \includegraphics[width = .3\linewidth]{example-image-a}
-    \caption{A figure caption}
+    \includegraphics[frame, width = .15\linewidth]{./install/1.jpg}
+    \caption{Installer icon}
   \end{figure}
   
-\item Click on the [this] button.
+  
+\item Allow installer to make changes to your computer.
   \begin{figure}[H]
     \centering
-    \includegraphics[width = .3\linewidth]{example-image-a}
-    \caption{A figure     nnknkncaption}
+    \includegraphics[frame, width = .5\linewidth]{./install/2.jpg}
+    \caption{User Account Control}
+  \end{figure}
+  
+
+\item Select your preferred language (in which you want to continue in installation).
+\begin{figure}[H]
+    \centering
+    \includegraphics[frame, width = .5\linewidth]{./install/3.jpg}
+    \caption{Language selection}
   \end{figure}
 
-\item Click on the [this] button.
-\item Click on the [this] button.
+
+\item Check the \textbf{[I accept the agreement]} to accept the statement about license agreement. Then press the \textbf{[Next]} button to submit.
+\begin{figure}[H]
+    \centering
+    \includegraphics[frame, width = .5\linewidth]{./install/4.jpg}
+    \caption{License agreement}
+  \end{figure}
+  
+
+\item Choose, where you want to install the program.Then press the \textbf{[Next]} button to submit.
+\begin{figure}[H]
+    \centering
+    \includegraphics[frame, width = .5\linewidth]{./install/5.jpg}
+    \caption{Destination selection}
+  \end{figure}
+  
+\newpage
+
+\item Check the \textbf{[Create a desktop shortcut]} if you want to create a desktop shortcut.
+\begin{figure}[H]
+    \centering
+    \includegraphics[frame, width = .5\linewidth]{./install/6.jpg}
+    \caption{Desktop shortcut}
+  \end{figure}
+
+
+\item Click on the \textbf{[Install]} button.
+\begin{figure}[H]
+    \centering
+    \includegraphics[frame, width = .5\linewidth]{./install/7.jpg}
+    \caption{Final install check}
+  \end{figure}
+
+\newpage
+\item Wait until the installation is complete.
+\begin{figure}[H]
+    \centering
+    \includegraphics[frame, width = .5\linewidth]{./install/8.jpg}
+    \caption{Installation}
+  \end{figure}
+
+\item Select the \textbf{[Launch CubiCulator]} option if you want to launch CubiCulator right after finishing the installation. Then click on the \textbf{[Finish]} button to finish installation.
+\begin{figure}[H]
+    \centering
+    \includegraphics[frame, width = .5\linewidth]{./install/9.jpg}
+    \caption{Finishing installation}
+  \end{figure}
+
 
 
 \end{enumerate}
-Installation Installation Installation Installation Installation Installation Installation Installation Installation Installation Installation Installation Installation Installation Installation Installation.
+At this point there should be CubiCulator program successfully installed on your device. You can launch it by double clicking on the Cubiculator icon if you have not already done that by selecting \textbf{[Launch CubiCulator]} option in step 9.
 
-
+\newpage
 \subsection{Uninstallation}
+To successfully uninstall your calculator program you need to follow these steps:
+
 
 \begin{enumerate}
-\item Click on the [this] button.
+\item In programs and features manager select CubiCulator program and click on the \textbf{[Uninstall]} button.
   \begin{figure}[H]
     \centering
-    \includegraphics[width = .3\linewidth]{example-image-a}
-    \caption{A figure caption}
+    \includegraphics[frame, width = .95\linewidth]{./uninstall/1.png}
+    \caption{Programs and features manager}
   \end{figure}
   
-\item Click on the [this] button.
+  
+\item Click on the \textbf{[Yes]} button.
   \begin{figure}[H]
     \centering
-    \includegraphics[width = .3\linewidth]{example-image-a}
-    \caption{A figure }
+    \includegraphics[frame, width = .5\linewidth]{./uninstall/2.jpg}
+    \caption{User account control - Uninstall}
+  \end{figure}
+  
+\item Click on the \textbf{[Yes]} button.
+  \begin{figure}[H]
+    \centering
+    \includegraphics[frame, width = .5\linewidth]{./uninstall/3.jpg}
+    \caption{CubiCulator Uninstall}
   \end{figure}
 
-\item Click on the [this] button.
-\item Click on the [this] button.
-\end{enumerate}
-
-
-\section{Calculator window}
-After successfully running the executable the main window shows up. The window contains of function buttons and display panel. Buttons are used for entering expressions and can be replaced by physical keyboard. Display panel returns results of calculations and shows the history of calculations.
+\item Wait until the uninstalling of the program ends.
   \begin{figure}[H]
     \centering
-    \includegraphics[width = .3\linewidth]{example-image-a}
+    \includegraphics[frame, width = .5\linewidth]{./uninstall/4.jpg}
+    \caption{CubiCulator Uninstalling process}
+  \end{figure}
+
+
+\item Click \textbf{[Ok]}.
+  \begin{figure}[H]
+    \centering
+    \includegraphics[frame, width = .5\linewidth]{./uninstall/5.jpg}
+    \caption{CubiCulator Uninstalling process}
+  \end{figure}
+
+\end{enumerate}
+At this point your CubiCulator should be successfully uninstalled.
+
+\newpage
+\section{Calculator window}
+After successfully running the executable the main window shows up. This window is called calculator view. Calculator view contains of function buttons and display panels. Buttons are used for entering mathematical expressions and can be replaced by physical keyboard. Display panel returns results of calculations and shows the history of calculations.
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[frame, width = .7\linewidth]{calc-view.png}
   \caption{Calculator view}
 \end{figure}
 
@@ -96,20 +177,15 @@ After successfully running the executable the main window shows up. The window c
 \item C button - Clears an entry.
 \item Mathematical functions - Enters mathematical function.
 \item $\pi$ Button - Enters number $\pi$.
+\item DEL button - Clears history.
+\item HELP button - Shows hint.
 \end{enumerate}
 
-\subsection{Mathematical functions}
+\newpage
+\section{Mathematical functions}
 \label{mf}
 Calculator can compute various mathematical functions. Different function have different number of operands. In case of every 2 operand function (\emph{+, -, *, /, n\^{}x, n$\sqrt{x}$}) you enter operands in \emph{operand1 function operand2} order. In case of factorial (\emph{x!}) function you enter operand in \emph{operand function} order. In case of natural logarithm you enter operand in \emph{function operand} order.
-\\For example the $\frac{\sqrt{4}}{3}$ expression would be written in this order:
-\begin{enumerate}
-\item 2 number button
-\item Root button
-\item 4 number button
-\item Division button
-\item 3 number button
-\end{enumerate}
-\\
+\subsection{Function overview}
 Here you can see overview of the mathematical functions:
 \begin{center}
 \begin{tabular}{| l | c | c | c |}
@@ -119,13 +195,71 @@ Addition & + & 2 & \emph{operand1 function operand2}\\\hline
 Subtraction & - & 2 & \emph{operand1 function operand2}\\\hline
 Multiplication & * & 2 & \emph{operand1 function operand2}\\\hline
 Division & / & 2 & \emph{operand1 function operand2}\\\hline
-Power & n\^{}x & 2 & \emph{operand1 function operand2*}\\\hline
-Root & n$\sqrt{x}$  & 2 & \emph{operand1 function operand2}\\\hline
+Power & x\^{}n & 2 & \emph{operand1 function operand2*}\\\hline
+Root & n$\sqrt{x}$  & 2 & \emph{operand1 function operand2**}\\\hline
 Factorial & x! & 1 & \emph{operand function}\\\hline
 Natural logarithm & ln x & 1 & \emph{function operand}\\\hline
 \end{tabular}
 \end{center}
-*In case of \emph{function operand} the expression is equal to \emph{2 function operand} or $\sqrt{x}$.
+*In case of \emph{function operand} input order the expression is equal to \emph{2 function operand} or  $2^{x}$.\\
+**In case of \emph{function operand} input order the expression is equal to \emph{2 function operand} or $\sqrt{x}$.\\
+
+\subsection{Example}
+For example, if you want to calculate $\frac{\sqrt{4}}{3}$ expression you would be entering commands in this order:
+
+
+\begin{enumerate}
+\item Click on the \textbf{[2]} number button.
+\begin{figure}[H]
+    \centering
+    \includegraphics[frame, width = .5\linewidth]{./calculation/1.png}
+    \caption{Expression input - 1}
+  \end{figure}
+\newpage
+\item Then click on the \textbf{[Root]} button.
+\begin{figure}[H]
+    \centering
+    \includegraphics[frame, width = .5\linewidth]{./calculation/2.png}
+    \caption{Expression input - 2}
+  \end{figure}
+
+\item After that click on the \textbf{[4]} number button.
+\begin{figure}[H]
+    \centering
+    \includegraphics[frame, width = .5\linewidth]{./calculation/3.png}
+    \caption{Expression input - 3}
+  \end{figure}
+  
+  
+\newpage
+\item To divide the number click on the \textbf{[/]} Division button.
+\begin{figure}[H]
+    \centering
+    \includegraphics[frame, width = .5\linewidth]{./calculation/4.png}
+    \caption{Expression input - 4}
+  \end{figure}
+
+
+\item Then click on the \textbf{[3]} number button.
+\begin{figure}[H]
+    \centering
+    \includegraphics[frame, width = .5\linewidth]{./calculation/5.png}
+    \caption{Expression input - 5}
+  \end{figure}
+
+\newpage
+\item To calculate result of this expression click on the \textbf{[=]} number button.
+\begin{figure}[H]
+    \centering
+    \includegraphics[frame, width = .5\linewidth]{./calculation/6.png}
+    \caption{Expression input - 6}
+  \end{figure}
+
+
+\end{enumerate}
+
+\section{Input and error messages}
+
 \subsection{How to add Comments and Track Changes}
 
 Comments can be added to your project by highlighting some text and clicking ``Add comment'' in the top right of the editor pane. To view existing comments, click on the Review menu in the toolbar above. To reply to a comment, click on the Reply button in the lower right corner of the comment. You can close the Review pane by clicking its name on the toolbar when you're done reviewing for the time being.
