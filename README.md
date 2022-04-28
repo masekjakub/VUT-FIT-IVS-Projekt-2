@@ -17,5 +17,4 @@ Team name: EXPECT_EQ(oznuk, false)
 
 Licence
 ---
-
-Tento program je poskytovan...
+GNU General Public License v3
