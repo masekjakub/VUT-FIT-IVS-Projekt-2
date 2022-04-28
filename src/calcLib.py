@@ -7,7 +7,7 @@ Authors: Filip Polomski xpolom00
 Description: Math library for calculator 
 """
 
-##
+## 
 # @file calcLib.py
 # @brief Math library for calculator
 # @author Filip Polomski and Martin Zelenák
@@ -116,4 +116,4 @@ def pi():
     pi = 3.141592653589793
     return pi
 
-# End of file calcLib.py
+### End of file calcLib.py ###
