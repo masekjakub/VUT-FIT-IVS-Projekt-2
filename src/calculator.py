@@ -313,6 +313,7 @@ def attachButtons():
     keyboard.on_press_key("down", historyDown)
     keyboard.on_press_key('up', historyUp)
 
+## Function prints last result to input.
 def ansToInputBtn():
     ui.resIndex = 1
     ansToInput()
