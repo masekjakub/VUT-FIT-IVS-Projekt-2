@@ -186,3 +186,5 @@ class Test_Advanced:
     ## Test for testing calcLib.pi
     def test_pi(self):
         assert "{0:.15f}".format(calcLib.pi()) == "{0:.15f}".format(pi)
+
+### End of file test_calcLib.py ###
