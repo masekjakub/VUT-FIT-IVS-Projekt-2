@@ -77,7 +77,7 @@ class Ui_calculator(object):
         font.setPointSize(15)
         calculator.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(".\\24.png"),
+        icon.addPixmap(QtGui.QPixmap(".\\256.ico"),
                        QtGui.QIcon.Normal, QtGui.QIcon.Off)
         calculator.setWindowIcon(icon)
         calculator.setStyleSheet("background-color: rgb(72, 72, 72);")
