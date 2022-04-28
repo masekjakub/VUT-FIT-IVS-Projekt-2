@@ -357,3 +357,5 @@ if __name__ == "__main__":
     calculator.show()
     ui.lineInput.setFocus()
     sys.exit(app.exec_())
+
+### End of file calculator.py ###
