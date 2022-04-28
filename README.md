@@ -1,10 +1,13 @@
+CubiCulator v1.2
+---
+
 System
----------
+---
 
 Windows 64bit
 
 Authors
-------
+---
 
 Team name: EXPECT_EQ(oznuk, false)
 - xkucha30 Vojtěch Kuchař
@@ -13,6 +16,6 @@ Team name: EXPECT_EQ(oznuk, false)
 - xzelen27 Martin Zelenák 
 
 Licence
--------
+---
 
 Tento program je poskytovan...
