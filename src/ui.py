@@ -9,7 +9,7 @@ Description: File with style methods for calculator.py
 ##
 # @file ui.py
 # @brief File with UI class for calculator.py
-# @author Jakub Mašek xmasek19
+# @author Jakub Mašek
 
 """
 This file is part of CubiCulator.
@@ -1057,3 +1057,6 @@ class Ui_calculator(object):
         self.delHistoryBtn.setText(_translate("calculator", "DEL"))
         self.helpBtn.setToolTip(_translate("calculator", "Show help"))
         self.helpBtn.setText(_translate("calculator", "HELP"))
+
+
+### End of file ui.py ###
