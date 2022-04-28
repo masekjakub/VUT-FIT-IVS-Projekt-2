@@ -64,6 +64,8 @@ def ansToInput():
 
 ## Function that clears history.
 def delHistory():
+    resList.clear()
+    resList.append("")
     ui.textDisplay.clear()
     ui.lineInput.setFocus()
 
