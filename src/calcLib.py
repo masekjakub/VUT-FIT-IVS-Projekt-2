@@ -1,7 +1,7 @@
 """
 Project name: VUT FIT IVS 2. Project
 File: calcLib.py
-Date: 20.4.2022
+Date: 22.4.2022
 Authors: Filip Polomski xpolom00
          Martin Zelenák xzelen27
 Description: Math library for calculator 
