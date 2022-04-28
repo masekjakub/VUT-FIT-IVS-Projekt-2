@@ -255,8 +255,8 @@ def calculate():
     else:
         ui.lineInput.setText("")
         ui.lineInput.setFocus()
-        ui.resIndex = 0
-        resList.insert(1,ui.res)
+        resList.insert(0,ui.res)
+        ui.resIndex = len(resList)-1
 
     #add result to history and ensure history text label is scrolled down
     ui.textDisplay.append(resString)
@@ -335,7 +335,7 @@ def attachButtons():
 
 ## Function prints last result to input.
 def ansToInputBtn():
-    ui.resIndex = 1
+    ui.resIndex = 0
     ansToInput()
 
 ## Function scrolls up between previous results and prints it to the input.
