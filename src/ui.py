@@ -945,7 +945,7 @@ class Ui_calculator(object):
         self.textDisplay.setFont(font)
         self.textDisplay.setMouseTracking(False)
         self.textDisplay.setAutoFillBackground(False)
-        self.textDisplay.setStyleSheet("font: 15pt \"Calibri\";\n"
+        self.textDisplay.setStyleSheet("font: 13pt \"Calibri\";\n"
                                        "background-color: rgb(72, 72, 72);\n"
                                        "color:white;\n"
                                        "")
