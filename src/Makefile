@@ -33,14 +33,14 @@ TESTSFILE=test_calcLib.py
 DOXYFILE=Doxyfile
 PROFILING=profiling.py
 PROFILINGDATA=profilingData.txt
-INSTALLATOR=../installer/CubiCulator_v1-2_setup.exe
+INSTALLATOR=CubiCulator_v1-2_setup.exe
 ARCHIVE=xkucha30_xmasek19_xpolom00_xzelen27
 
 .PHONY: all pack clean run test doc profile help
 
 all: $(CALCULATOR)
 	$(PYTHON) $<
-pack: $(INSTALLATOR)
+pack: ../installer/$(INSTALLATOR)
 #Generate documentation
 	doxygen
 #Create folders
@@ -53,7 +53,7 @@ pack: $(INSTALLATOR)
 #Move installator
 	cp ../installer/$(INSTALLATOR) ../$(ARCHIVE)/install
 #Zip archive
-	zip ../$(ARCHIVE).zip ../$(ARCHIVE)
+	cd .. ;zip -r $(ARCHIVE).zip $(ARCHIVE)
 	rm -r -f ../$(ARCHIVE)
 
 clean:
