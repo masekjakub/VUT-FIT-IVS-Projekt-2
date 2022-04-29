@@ -34,7 +34,7 @@ DOXYFILE=Doxyfile
 PROFILING=profiling.py
 PROFILINGDATA=profilingData.txt
 INSTALLATOR=CubiCulator_v1-2_setup.exe
-ARCHIVE=xkucha30_xmasek19_xpolom00_xzelen27.zip
+ARCHIVE=xkucha30_xmasek19_xpolom00_xzelen27
 
 .PHONY: all pack clean run test doc profile help
 
