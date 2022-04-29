@@ -15,6 +15,6 @@ Team name: EXPECT_EQ(oznuk, false)
 - xpolom00 Filip Polomski 
 - xzelen27 Martin Zelenák 
 
-Licence
+License
 ---
 GNU General Public License v3
