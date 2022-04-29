@@ -41,14 +41,15 @@ ARCHIVE=xkucha30_xmasek19_xpolom00_xzelen27
 all: $(CALCULATOR)
 	$(PYTHON) $<
 pack: $(INSTALLATOR)
+#Generate documentation
+	doxygen
 #Create folders
 	mkdir -p ../$(ARCHIVE)
 	mkdir -p ../$(ARCHIVE)/doc ../$(ARCHIVE)/install ../$(ARCHIVE)/repo
-#Copy repository
-	rsync -av --progress .. ../$(ARCHIVE)/repo --exclude $(ARCHIVE) --exclude .vscode --exclude .pytest_cache --exclude src/__pycache__
-#Generate and move documentation
-	doxygen
+#Move documentation
 	mv ../html ../$(ARCHIVE)/doc
+#Copy repository
+	rsync -av --progress .. ../$(ARCHIVE)/repo --exclude $(ARCHIVE) --exclude .vscode --exclude .pytest_cache --exclude src/__pycache__ --exclude html
 #Move installator
 	cp ../installer/$(INSTALLATOR) ../$(ARCHIVE)/install
 #Zip archive
@@ -62,9 +63,7 @@ clean:
 	rm -r -f manual.pdf
 #Removes python generated files
 	rm -r -f -d __pycache__
-	rm -r -f -d .pytest_cache
-#Removes installer
-	rm -r -f $(INSTALLATOR)
+	rm -r -f -d ../.pytest_cache
 #Removes packed archive
 	rm -r -f ../$(ARCHIVE).zip
 run: $(CALCULATOR)
