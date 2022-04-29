@@ -9,9 +9,6 @@ src/profile
 #Doxygen folder
 */html/
 html/
-#Installer
-CubiCulator_v1-2_setup.exe
-*/CubiCulator_v1-2_setup.exe
 #Packed archive
 
 #Other
