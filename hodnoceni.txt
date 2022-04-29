@@ -1,4 +1,4 @@
-xlogin01 100 (základ GUI a základní mat. operace)
-xlogin02 100 (pokročilé mat. operace)
-xlogin03 90 (profiling, instalátor)
-xlogin04 110 (testy, dokumentace)
+xkucha30 100 (tvorba uživatelské dokumentace, help, licence)
+xmasek19 100 (implementace gui (PythonQT), propojení gui s mat. knihovnou)
+xpolom00 100 (dokumentace, část funkcí mat. knihovny, od/instalátor)
+xzelen27 100 (mat. knihovna, testování, profiling)
