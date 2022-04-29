@@ -33,7 +33,7 @@ TESTSFILE=test_calcLib.py
 DOXYFILE=Doxyfile
 PROFILING=profiling.py
 PROFILINGDATA=profilingData.txt
-INSTALLATOR=CubiCulator_v1-2_setup.exe
+INSTALLATOR=../installer/CubiCulator_v1-2_setup.exe
 ARCHIVE=xkucha30_xmasek19_xpolom00_xzelen27
 
 .PHONY: all pack clean run test doc profile help
@@ -45,12 +45,12 @@ pack: $(INSTALLATOR)
 	mkdir -p ../$(ARCHIVE)
 	mkdir -p ../$(ARCHIVE)/doc ../$(ARCHIVE)/install ../$(ARCHIVE)/repo
 #Copy repository
-	rsync -av --progress .. ../$(ARCHIVE)/repo --exclude $(ARCHIVE)
+	rsync -av --progress .. ../$(ARCHIVE)/repo --exclude $(ARCHIVE) --exclude .vscode --exclude .pytest_cache --exclude src/__pycache__
 #Generate and move documentation
 	doxygen
 	mv ../html ../$(ARCHIVE)/doc
 #Move installator
-	mv ../installer/$(INSTALLATOR) ../$(ARCHIVE)/install
+	cp ../installer/$(INSTALLATOR) ../$(ARCHIVE)/install
 #Zip archive
 	zip ../$(ARCHIVE).zip ../$(ARCHIVE)
 	rm -r -f ../$(ARCHIVE)
