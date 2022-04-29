@@ -1,1 +1,19 @@
-tento soubor bude obsahovat rozdil mezi planem projektu a skutecnosti
+Rozdíly mezi plánem a skutečností:
+Projekt týmově hodnotíme jako zdařený. Všichni členové týmu se aktivně zapojovany do práce na svých částech projektu, které dokončili podle plánu. Spolupráce v týmu byla v přátelském prostředí, navzdory nastaveným pravidlům. Tým se pravidelně setkával a domlouval na dalších strategiích. Komunikace přes telefon nebyla potřeba, což hodnotíme jako úspěch, neboť jsme si ji vyhradili pouze pro akutní případy. Jinak se tým domlouval převážně osobně, mimo to se drobné implementační detaily řešily přes facebook messenger a discord. Doodle ani email navzdory plánu využit nebyl. Pro správu verzí byl využit git a pro hosting byl podle plánu využit github. Kalkulačka byla vyvíjena převážně na windows, částečně na Linux Ubuntu distribuci (WSL). Časový plán nebyl dodržen naplno. Naplňování plánu narušilo prvotní zpoždení Martina Zelenáka o dva týdny. Časový skluz byl však dohnán.
+
+Plán  
+28.3. návrh a implementace testů matematické knihovny
+30.3. návrh gui a matematické knihovny
+11.4. implementace gui, implementace matematické knihovny, vygenerování doxygen dokumentace
+22.4. implementace profilingu, zhotovení instalátoru a odinstalátoru, dokončení dokumentace, tvorba uživatelské příručky
+25.4. dokončení finálního produktu, vyhodnocení projektu a naplnění plánu
+
+Skutečnost
+11.4. návrh a implementace testů matematické knihovny
+11.4. návrh gui a matematické knihovny
+12.4. implementace matematické knihovny
+15.4. implementace gui
+22.4. implementace profilingu
+25.4. zhotovení instalátoru a odinstalátoru
+27.4. dokončení dokumentace, tvorba uživatelské příručky
+28.4. vygenerování doxygen dokumentace, dokončení finálního produktu, vyhodnocení projektu a naplnění plánu
